@@ -186,13 +186,13 @@ public class FenetrePrincipale implements ActionListener {
 	        JButton boutonRetour = new JButton("Retour");
 	        this.frame.add(jLabel);
 
-	        boutonReglesGenerales.setBounds(500, 270, 200, 40);
+	        boutonReglesGenerales.setBounds(500, 300, 200, 40);
 	        jLabel.add(boutonReglesGenerales);
 
 	        boutonReglesPieces.setBounds(500, 370, 200, 40);
 	        jLabel.add(boutonReglesPieces);
 
-	        boutonRetour.setBounds(500, 470, 200, 40);
+	        boutonRetour.setBounds(500, 440, 200, 40);
 	        jLabel.add(boutonRetour);
 
 			boutonRetour.addActionListener(e -> {

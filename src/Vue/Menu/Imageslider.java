@@ -52,7 +52,7 @@ class Imageslider extends JFrame  implements ActionListener
 
         if(regle==1){
 
-        BufferedImage bufferedImage = ImageIO.read(new File("Images/Menu_Regles_Generales(1).png"));
+        BufferedImage bufferedImage = ImageIO.read(new File("Images/Menu_Regles_Generales.jpg"));
         Image image0 = bufferedImage.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
 
         BufferedImage bufferedImage1 = ImageIO.read(new File("Images/Menu_Regles_Generales(2).png"));
@@ -76,7 +76,7 @@ class Imageslider extends JFrame  implements ActionListener
        // BufferedImage bufferedImage5 = ImageIO.read(new File("Images/Retirer_tuile2.png"));
       //  Image image5 = bufferedImage5.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
 
-        s = new ImageIcon[10];
+        s = new ImageIcon[7];
         s[0] = new ImageIcon(image0);
         s[1] = new ImageIcon(image1);
         s[2] = new ImageIcon(image2);
@@ -89,27 +89,43 @@ class Imageslider extends JFrame  implements ActionListener
         l.setIcon(s[0]);
 
         } else if (regle==2) {
-            BufferedImage bufferedImage = ImageIO.read(new File("Images/Menu_Regles_Tuiles.png"));
+            BufferedImage bufferedImage = ImageIO.read(new File("Images/Menu_Regles_Generales(1).png"));
             Image image0 = bufferedImage.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
 
-            BufferedImage bufferedImage1 = ImageIO.read(new File("Images/Menu_Monstres.png"));
+            BufferedImage bufferedImage1 = ImageIO.read(new File("Images/Menu_Regles_TuilesV.png"));
             Image image1 = bufferedImage1.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
 
-            BufferedImage bufferedImage2 = ImageIO.read(new File("Images/RegleTuileForet.png"));
+            BufferedImage bufferedImage2 = ImageIO.read(new File("Images/Menu_Regles_TuilesR.png"));
             Image image2 = bufferedImage2.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
 
-            BufferedImage bufferedImage3 = ImageIO.read(new File("Images/tuiles2.png"));
+            BufferedImage bufferedImage3 = ImageIO.read(new File("Images/Menu_Regles_TuilesVR.png"));
             Image image3 = bufferedImage3.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
 
-            BufferedImage bufferedImage4 = ImageIO.read(new File("Images/RegleTuileMontagne.png"));
+            BufferedImage bufferedImage4 = ImageIO.read(new File("Images/Volcan.png"));
             Image image4 = bufferedImage4.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
 
-            s = new ImageIcon[5];
+            BufferedImage bufferedImage5 = ImageIO.read(new File("Images/deCreature.png"));
+            Image image5 = bufferedImage5.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
+
+            BufferedImage bufferedImage6 = ImageIO.read(new File("Images/Dbaleine.png"));
+            Image image6 = bufferedImage6.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
+
+            BufferedImage bufferedImage7 = ImageIO.read(new File("Images/Drequin.png"));
+            Image image7 = bufferedImage7.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
+
+            BufferedImage bufferedImage8 = ImageIO.read(new File("Images/Deserpant.png"));
+            Image image8 = bufferedImage8.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
+
+            s = new ImageIcon[9];
             s[0] = new ImageIcon(image0);
             s[1] = new ImageIcon(image1);
             s[2] = new ImageIcon(image2);
             s[3] = new ImageIcon(image3);
             s[4] = new ImageIcon(image4);
+            s[5] = new ImageIcon(image5);
+            s[6] = new ImageIcon(image6);
+            s[7] = new ImageIcon(image7);
+            s[8] = new ImageIcon(image8);
             l.setIcon(s[0]);
         }
     }
