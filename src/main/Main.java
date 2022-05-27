@@ -13,7 +13,7 @@ import Vue.Menu.Fenetre;
 import Vue.Menu.FenetrePrincipale;
 
 public class Main {
-
+// Ces modifs sont faites par wissal
 	private JFrame frame;
 
 	public static void main(String[] args) {

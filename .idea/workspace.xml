@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f42e3bf3-3b5d-4130-8bb3-a4f9c5a8e38c" name="Changes" comment="menu pseudos + navigation entre fenetre mise à jour background + regles">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/projet-poo/Controlleur/GetAction.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/projet-poo/Controlleur/GetAction.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/projet-poo/Vue/Menu/FenetrePrincipale.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/projet-poo/Vue/Menu/FenetrePrincipale.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/projet-poo/Vue/Menu/Imageslider.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/projet-poo/Vue/Menu/Imageslider.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Vue/Menu/Imageslider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vue/Menu/Imageslider.java" afterDir="false" />
+    <list default="true" id="203fd292-7554-45af-aeb8-565a68494251" name="Changes" comment="menu pseudos + navigation entre fenetre mise à jour background + regles">
+      <change beforePath="$PROJECT_DIR$/projet-poo.iml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,16 +32,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
-  }
-}</component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="" />
@@ -61,6 +56,17 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
