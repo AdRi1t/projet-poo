@@ -155,9 +155,9 @@ public class FenetrePrincipale implements ActionListener {
 			jLabel.setIcon(icon);
 			this.frame.add(jLabel);
 
-	        JButton b1 = new JButton("Règles générale");
+	        JButton boutonReglesGenerales = new JButton("Règles générale");
 
-			b1.addActionListener(new ActionListener()
+			boutonReglesGenerales.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)
 				{
@@ -170,8 +170,8 @@ public class FenetrePrincipale implements ActionListener {
 				}
 			});
 
-			JButton b2 = new JButton("Règles pièces");
-			b2.addActionListener(new ActionListener()
+			JButton boutonReglesPieces = new JButton("Règles pièces");
+			boutonReglesPieces.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)
 				{
@@ -183,19 +183,19 @@ public class FenetrePrincipale implements ActionListener {
 					}
 				}
 			});
-	        JButton b3 = new JButton("Retour");
+	        JButton boutonRetour = new JButton("Retour");
 	        this.frame.add(jLabel);
 
-	        b1.setBounds(500, 270, 200, 40);
-	        jLabel.add(b1);
+	        boutonReglesGenerales.setBounds(500, 270, 200, 40);
+	        jLabel.add(boutonReglesGenerales);
 
-	        b2.setBounds(500, 370, 200, 40);
-	        jLabel.add(b2);
+	        boutonReglesPieces.setBounds(500, 370, 200, 40);
+	        jLabel.add(boutonReglesPieces);
 
-	        b3.setBounds(500, 470, 200, 40);
-	        jLabel.add(b3);
+	        boutonRetour.setBounds(500, 470, 200, 40);
+	        jLabel.add(boutonRetour);
 
-			b3.addActionListener(e -> {
+			boutonRetour.addActionListener(e -> {
 				frame.setVisible(false);
 				FenetrePrincipale menu= new FenetrePrincipale();
 				try {
@@ -372,12 +372,12 @@ public class FenetrePrincipale implements ActionListener {
 			btnLancer.setBackground(Color.BLUE);
 			btnLancer.setForeground(Color.BLACK);
 			btnLancer.setBackground(Color.blue);
-			btnLancer.setBounds(450, 550, 236, 56);
+			btnLancer.setBounds(520, 550, 200, 50);
 			jLabel.add(btnLancer);
 
 
 			JButton retour = new JButton("Retour");
-			retour.setBounds(450, 610, 236, 56);
+			retour.setBounds(50, 30, 100, 40);
 			jLabel.add(retour);
 
 			retour.addActionListener(new ActionListener()

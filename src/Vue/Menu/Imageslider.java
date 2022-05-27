@@ -67,15 +67,19 @@ class Imageslider extends JFrame  implements ActionListener
         BufferedImage bufferedImage4 = ImageIO.read(new File("Images/RegleTuileMontagne.png"));
         Image image4 = bufferedImage4.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
 
-        s = new ImageIcon[5];
+       // BufferedImage bufferedImage5 = ImageIO.read(new File("Images/Retirer_tuile2.png"));
+      //  Image image5 = bufferedImage5.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
+
+        s = new ImageIcon[6];
         s[0] = new ImageIcon(image0);
         s[1] = new ImageIcon(image1);
         s[2] = new ImageIcon(image2);
         s[3] = new ImageIcon(image3);
         s[4] = new ImageIcon(image4);
-
+       // s[5] = new ImageIcon(image5);
         l.setIcon(s[0]);
-    } else if (regle==2) {
+
+        } else if (regle==2) {
             BufferedImage bufferedImage = ImageIO.read(new File("Images/Menu_Regles_Tuiles.png"));
             Image image0 = bufferedImage.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
 
@@ -85,7 +89,7 @@ class Imageslider extends JFrame  implements ActionListener
             BufferedImage bufferedImage2 = ImageIO.read(new File("Images/RegleTuileForet.png"));
             Image image2 = bufferedImage2.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
 
-            BufferedImage bufferedImage3 = ImageIO.read(new File("Images/RegleTuilePlage.png"));
+            BufferedImage bufferedImage3 = ImageIO.read(new File("Images/tuiles2.png"));
             Image image3 = bufferedImage3.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
 
             BufferedImage bufferedImage4 = ImageIO.read(new File("Images/RegleTuileMontagne.png"));
@@ -97,7 +101,6 @@ class Imageslider extends JFrame  implements ActionListener
             s[2] = new ImageIcon(image2);
             s[3] = new ImageIcon(image3);
             s[4] = new ImageIcon(image4);
-
             l.setIcon(s[0]);
         }
     }
