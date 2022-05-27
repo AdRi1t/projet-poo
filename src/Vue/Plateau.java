@@ -41,7 +41,6 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.MouseInputListener;
 import javax.swing.text.AttributeSet.FontAttribute;
 
-import Controlleur.ExplorateurListener;
 import Controlleur.PlateauListener;
 import Controlleur.PlateauListener;
 import Model.Joueur;
@@ -69,10 +68,6 @@ public class Plateau extends JFrame{
 	
 	/** l'image de fond. */
 	private static Image imageFond=null;
-	
-	private static MouseListener mouseListener;
-	
-	private static MouseMotionListener mouseMotionListener;
 	
 	private static MouseInputListener mouseInputListener;
 	
@@ -175,6 +170,18 @@ public class Plateau extends JFrame{
 		explorateurValeur.setForeground(new Color(250,250,250));
 		explorateurValeur.setFont(new Font("Impact",Font.TRUETYPE_FONT,30));
 		explorateurValeur.setBounds(1015,240,167,120);
+		
+		JButton Aide = new JButton("AIDE");
+		Aide.setBounds(1040, 645, 120, 60);
+		Aide.setFont(new Font("Impact",Font.TRUETYPE_FONT,24));
+		Aide.setBorder(new LineBorder(new Color(220,25,120), 3));
+		Aide.addMouseListener(new PlateauListener(Aide));
+		Aide.addMouseMotionListener(new PlateauListener(Aide));
+		JLabel aideIcone = new JLabel();
+		if(AideJoueur.aideActive==true) {
+			aideIcone = new JLabel(AideJoueur.getAideJoueurListe().get(AideJoueur.index));
+		}
+		aideIcone.setBounds(0,0,1200,720);
 
 		Fond.setLayout(null);
 		Fond.add(joueurIcone);
@@ -182,7 +189,9 @@ public class Plateau extends JFrame{
 		Fond.add(indication);
 		Fond.add(explorateurIcone);
 		Fond.add(explorateurValeur);
-		Plateau.mouseInputListener = new ExplorateurListener(main_frame, joueur);
+		Fond.add(Aide);
+		Fond.add(aideIcone);
+		Plateau.mouseInputListener = new PlateauListener(Aide);
 		Fond.addMouseMotionListener(Plateau.mouseInputListener);
 		Fond.addMouseListener(Plateau.mouseInputListener);
 		main_frame.add(Fond);
@@ -271,22 +280,6 @@ public class Plateau extends JFrame{
 	 */
 	public static void setIndexTuileEvidence(int indexTuileEvidence) {
 		Plateau.indexTuileEvidence = indexTuileEvidence;
-	}
-
-	public static MouseListener getMouseListener() {
-		return mouseListener;
-	}
-
-	public static void setMouseListener(MouseListener mouseListener) {
-		Plateau.mouseListener = mouseListener;
-	}
-
-	public static MouseMotionListener getMouseMotionListener() {
-		return mouseMotionListener;
-	}
-
-	public static void setMouseMotionListener(MouseMotionListener mouseMotionListener) {
-		Plateau.mouseMotionListener = mouseMotionListener;
 	}
 
 	public static MouseInputListener getMouseInputListener() {

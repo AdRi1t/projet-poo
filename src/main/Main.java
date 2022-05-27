@@ -34,12 +34,4 @@ public class Main {
 
 	}
 
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(0,0, 1200,720);
-		frame.setLocationRelativeTo(null);
-		frame.setResizable(false);
-		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-	}
-
 }
