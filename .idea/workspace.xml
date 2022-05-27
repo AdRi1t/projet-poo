@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f42e3bf3-3b5d-4130-8bb3-a4f9c5a8e38c" name="Changes" comment="menu pseudos + navigation entre fenetre mise à jour background + boutons">
+    <list default="true" id="f42e3bf3-3b5d-4130-8bb3-a4f9c5a8e38c" name="Changes" comment="menu pseudos + navigation entre fenetre mise à jour background + regles">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controlleur/GetAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controlleur/GetAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Vue/Menu/FenetrePrincipale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vue/Menu/FenetrePrincipale.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/production/projet-poo/Controlleur/GetAction.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/projet-poo/Controlleur/GetAction.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/production/projet-poo/Vue/Menu/FenetrePrincipale.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/projet-poo/Vue/Menu/FenetrePrincipale.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/classes/production/projet-poo/Vue/Menu/Imageslider.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/projet-poo/Vue/Menu/Imageslider.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Vue/Menu/Imageslider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vue/Menu/Imageslider.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +87,7 @@
       <workItem from="1653425966505" duration="13220000" />
       <workItem from="1653449406489" duration="600000" />
       <workItem from="1653560874941" duration="15835000" />
-      <workItem from="1653647566359" duration="9620000" />
+      <workItem from="1653647566359" duration="10460000" />
     </task>
     <task id="LOCAL-00001" summary="modif régles jeu &amp; navigation fenetre">
       <created>1653101151401</created>
@@ -137,7 +138,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653618284470</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="menu pseudos + navigation entre fenetre mise à jour background + regles">
+      <created>1653686103134</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1653686103134</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -159,6 +167,7 @@
     <MESSAGE value="menu pseudos fini (saisie + récupération)" />
     <MESSAGE value="menu pseudos fini (saisie + récupération) + navigation entre fenetre" />
     <MESSAGE value="menu pseudos + navigation entre fenetre mise à jour background + boutons" />
-    <option name="LAST_COMMIT_MESSAGE" value="menu pseudos + navigation entre fenetre mise à jour background + boutons" />
+    <MESSAGE value="menu pseudos + navigation entre fenetre mise à jour background + regles" />
+    <option name="LAST_COMMIT_MESSAGE" value="menu pseudos + navigation entre fenetre mise à jour background + regles" />
   </component>
 </project>

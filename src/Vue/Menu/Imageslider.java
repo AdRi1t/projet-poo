@@ -55,27 +55,36 @@ class Imageslider extends JFrame  implements ActionListener
         BufferedImage bufferedImage = ImageIO.read(new File("Images/Menu_Regles_Generales(1).png"));
         Image image0 = bufferedImage.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
 
-        BufferedImage bufferedImage1 = ImageIO.read(new File("Images/RegleExplo.png"));
+        BufferedImage bufferedImage1 = ImageIO.read(new File("Images/Menu_Regles_Generales(2).png"));
         Image image1 = bufferedImage1.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
 
-        BufferedImage bufferedImage2 = ImageIO.read(new File("Images/RegleTuileForet.png"));
+        BufferedImage bufferedImage2 = ImageIO.read(new File("Images/Menu_Regles_Generales(3).png"));
         Image image2 = bufferedImage2.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
 
-        BufferedImage bufferedImage3 = ImageIO.read(new File("Images/RegleTuilePlage.png"));
+        BufferedImage bufferedImage3 = ImageIO.read(new File("Images/Menu_Regles_Generales(4).png"));
         Image image3 = bufferedImage3.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
 
-        BufferedImage bufferedImage4 = ImageIO.read(new File("Images/RegleTuileMontagne.png"));
+        BufferedImage bufferedImage4 = ImageIO.read(new File("Images/Menu_Regles_Generales(5).png"));
         Image image4 = bufferedImage4.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
+
+        BufferedImage bufferedImage5 = ImageIO.read(new File("Images/Menu_Regles_Generales(6).png"));
+        Image image5 = bufferedImage5.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
+
+        BufferedImage bufferedImage6 = ImageIO.read(new File("Images/Menu_Regles_Generales(7).png"));
+        Image image6 = bufferedImage6.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
 
        // BufferedImage bufferedImage5 = ImageIO.read(new File("Images/Retirer_tuile2.png"));
       //  Image image5 = bufferedImage5.getScaledInstance(200, 200, Image.SCALE_DEFAULT);
 
-        s = new ImageIcon[6];
+        s = new ImageIcon[10];
         s[0] = new ImageIcon(image0);
         s[1] = new ImageIcon(image1);
         s[2] = new ImageIcon(image2);
         s[3] = new ImageIcon(image3);
         s[4] = new ImageIcon(image4);
+        s[5] = new ImageIcon(image5);
+        s[6] = new ImageIcon(image6);
+       // s[7] = new ImageIcon(image7);
        // s[5] = new ImageIcon(image5);
         l.setIcon(s[0]);
 
