@@ -52,7 +52,7 @@ class Imageslider extends JFrame  implements ActionListener
 
         if(regle==1){
 
-        BufferedImage bufferedImage = ImageIO.read(new File("Images/Menu_Regles_Generales.png"));
+        BufferedImage bufferedImage = ImageIO.read(new File("Images/Menu_Regles_Generales(1).png"));
         Image image0 = bufferedImage.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
 
         BufferedImage bufferedImage1 = ImageIO.read(new File("Images/RegleExplo.png"));
