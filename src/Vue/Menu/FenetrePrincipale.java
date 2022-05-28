@@ -205,7 +205,7 @@ public class FenetrePrincipale implements ActionListener {
 				}
 			});
 			this.frame.setResizable(false);
-	        this.frame.setSize(1200, 730);
+	        this.frame.setSize(this.width, this.height);
 	        this.frame.setDefaultCloseOperation(3);
 	        this.frame.setVisible(true);
 	    }
