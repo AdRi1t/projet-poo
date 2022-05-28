@@ -2,15 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f42e3bf3-3b5d-4130-8bb3-a4f9c5a8e38c" name="Changes" comment="ajout règles generales et pieces">
+      <change afterPath="$PROJECT_DIR$/Images/PieceBateau.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/PieceBateau2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/PieceBateau3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Images/PieceBateau4.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/projet-poo/Vue/Menu/FenetrePrincipale$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/projet-poo/Vue/Menu/FenetrePrincipale$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/projet-poo/Vue/Menu/FenetrePrincipale$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/projet-poo/Vue/Menu/FenetrePrincipale$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/projet-poo/Vue/Menu/FenetrePrincipale$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/projet-poo/Vue/Menu/FenetrePrincipale$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/projet-poo/Vue/Menu/FenetrePrincipale$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/projet-poo/Vue/Menu/FenetrePrincipale$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/classes/production/projet-poo/Vue/Menu/FenetrePrincipale$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/projet-poo/Vue/Menu/FenetrePrincipale$5.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/classes/production/projet-poo/Vue/Menu/FenetrePrincipale.class" beforeDir="false" afterPath="$PROJECT_DIR$/classes/production/projet-poo/Vue/Menu/FenetrePrincipale.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controlleur/GetAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controlleur/GetAction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Explorateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Explorateur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Vue/Menu/FenetrePrincipale.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vue/Menu/FenetrePrincipale.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Vue/Menu/Imageslider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Vue/Menu/Imageslider.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +93,10 @@
       <workItem from="1653560874941" duration="15835000" />
       <workItem from="1653647566359" duration="14262000" />
       <workItem from="1653693971325" duration="58000" />
-      <workItem from="1653698632831" duration="4587000" />
+      <workItem from="1653698632831" duration="5068000" />
+      <workItem from="1653704457823" duration="984000" />
+      <workItem from="1653725814747" duration="4197000" />
+      <workItem from="1653753206705" duration="2697000" />
     </task>
     <task id="LOCAL-00001" summary="modif régles jeu &amp; navigation fenetre">
       <created>1653101151401</created>
@@ -214,7 +217,14 @@
       <option name="project" value="LOCAL" />
       <updated>1653702935113</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="ajout règles generales et pieces">
+      <created>1653704075562</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1653704075562</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

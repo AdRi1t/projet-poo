@@ -57,7 +57,7 @@ public class FenetrePrincipale implements ActionListener {
 	        this.frame.add(jLabel);
 
 			b1.setBounds(500, 300, 200, 40);
-			b1.setBackground(Color.RED);
+			//b1.setBackground(Color.RED);
 			b1.addActionListener(this);
 	        jLabel.add(b1);
 
@@ -67,7 +67,6 @@ public class FenetrePrincipale implements ActionListener {
 				public void actionPerformed(ActionEvent e)
 				{
 					frame.setVisible(false);
-					//Imageslider i = new Imageslider();
 					try {
 						fenetre_regles_generales();
 					} catch (IOException ex) {
@@ -75,9 +74,21 @@ public class FenetrePrincipale implements ActionListener {
 					}
 				}
 			});
-
 			jLabel.add(b2);
+
 	        b3.setBounds(500, 440, 200, 40);
+			b3.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					frame.setVisible(false);
+					try {
+						fenetre_credits();
+					} catch (IOException ex) {
+						throw new RuntimeException(ex);
+					}
+				}
+			});
 	        jLabel.add(b3);
 
 	        this.frame.setResizable(false);
@@ -205,8 +216,29 @@ public class FenetrePrincipale implements ActionListener {
 	        this.frame.setDefaultCloseOperation(3);
 	        this.frame.setVisible(true);
 	    }
-	    public void fenetre_credits() {
-	        this.frame.setTitle("CREDITS");
+	    public void fenetre_credits() throws IOException {
+			this.frame = new JFrame("CREDITS");
+
+			BufferedImage bufferedImage = ImageIO.read(new File("Images/credit.png"));
+			Image image2 = bufferedImage.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
+
+			ImageIcon icon = new ImageIcon(image2);
+			JLabel jLabel = new JLabel();
+			jLabel.setIcon(icon);
+
+			JButton boutonRet = new JButton("Retour");
+			boutonRet.setBounds(50, 30, 100, 40);
+			boutonRet.addActionListener(e -> {
+				frame.setVisible(false);
+				FenetrePrincipale menu= new FenetrePrincipale();
+				try {
+					menu.fenetre_menu();
+				} catch (IOException ex) {
+					throw new RuntimeException(ex);
+				}
+			});
+			jLabel.add(boutonRet);
+			this.frame.add(jLabel);
 	        this.frame.setResizable(false);
 	        this.frame.setSize(this.width, this.height);
 	        this.frame.setDefaultCloseOperation(3);

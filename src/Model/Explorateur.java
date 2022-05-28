@@ -37,7 +37,6 @@ public class Explorateur {
                 for(int j=1;j<3;j++){
                     System.out.println("création d'explorateur ["+couleur+"]["+i+"]");
                     pionExplorateur.add(new Explorateur(i,couleur));
-
                 }
             }
             /**
