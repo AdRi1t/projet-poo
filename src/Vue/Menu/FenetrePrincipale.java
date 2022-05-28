@@ -161,8 +161,9 @@ public class FenetrePrincipale implements ActionListener {
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					frame.setVisible(false);
+
 					try {
+						frame.setVisible(false);
 						Imageslider i = new Imageslider(1);
 					} catch (IOException ex) {
 						throw new RuntimeException(ex);
