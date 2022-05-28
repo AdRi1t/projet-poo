@@ -39,11 +39,6 @@ public class FenetrePrincipale implements ActionListener {
 	private JLabel lblAffichage3;
 	private JLabel lblAffichage4;
 
-	public void init_fenetre() {
-	        this.width = 1200;
-	        this.height = 720;
-	    }
-
 	    public void fenetre_menu() throws IOException {
 
 	        this.frame = new JFrame("MENU PRINCIPAL");

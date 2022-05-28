@@ -29,7 +29,7 @@ public class GetAction extends AbstractAction {
         String pseudo3 = menuJoueur.getTextFieldPseudo3().getText();
         menuJoueur.getLabelPseudo3().setText(pseudo3);
         String pseudo4 = menuJoueur.getTextFieldPseudo4().getText();
-        menuJoueur.getLabelPseudo4().setText( pseudo4);
+        menuJoueur.getLabelPseudo4().setText(pseudo4);
 
         //String nb = menuJoueur.getSelection().getActionCommand();
        // System.out.println("Le radio bouton sélectionné est: " +nb);
