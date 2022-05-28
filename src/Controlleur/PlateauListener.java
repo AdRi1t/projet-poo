@@ -121,15 +121,15 @@ public class PlateauListener implements MouseInputListener {
 								tuileSelection = true;
 							} else if (tuileSelection == true && tuileTmp.isFaceUp() == false) {
 								Tuile.RetirerTuile(tuileTmp.getIndex());
+								joueur.getMainJoueur().addTuile(tuileTmp);
 								tuileSelection = false;
-							}
-
-							if (Joueur.indexTour == (Joueur.listeJoueur.size() - 1)) {
-								Joueur.indexTour = 0;
-								joueur = Joueur.listeJoueur.get(Joueur.indexTour);
-							} else {
-								Joueur.indexTour += 1;
-								joueur = Joueur.listeJoueur.get(Joueur.indexTour);
+								if (Joueur.indexTour == (Joueur.listeJoueur.size() - 1)) {
+									Joueur.indexTour = 0;
+									joueur = Joueur.listeJoueur.get(Joueur.indexTour);
+								} else {
+									Joueur.indexTour += 1;
+									joueur = Joueur.listeJoueur.get(Joueur.indexTour);
+								}
 							}
 							try {
 								Plateau.afficherPlateau();

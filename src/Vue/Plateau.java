@@ -1,6 +1,8 @@
 package Vue;
 
 import java.awt.BasicStroke;
+import java.awt.BorderLayout;
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -13,10 +15,12 @@ import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.LayoutManager;
+import java.awt.Panel;
 import java.awt.Polygon;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -37,6 +41,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.event.MouseInputListener;
 import javax.swing.text.AttributeSet.FontAttribute;
@@ -44,6 +49,7 @@ import javax.swing.text.AttributeSet.FontAttribute;
 import Controlleur.PlateauListener;
 import Controlleur.PlateauListener;
 import Model.Joueur;
+import Model.LancerDe;
 import Model.Tuile;
 
 // TODO: Auto-generated Javadoc
@@ -182,13 +188,33 @@ public class Plateau extends JFrame{
 			aideIcone = new JLabel(AideJoueur.getAideJoueurListe().get(AideJoueur.index));
 		}
 		aideIcone.setBounds(0,0,1200,720);
-
+	
+		JButton lancerDe = new JButton("Lancer le dé");
+		lancerDe.setBounds(510, 670, 200, 50);
+		lancerDe.setFont(new Font("Impact",Font.TRUETYPE_FONT,24));
+		lancerDe.setBorder(new LineBorder(new Color(220,25,120), 3));
+		lancerDe.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				LancerDe lance;
+				try {
+					lance = new LancerDe();
+					lance.setAlwaysOnTop(true);
+					lance.setVisible(true);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		
 		Fond.setLayout(null);
 		Fond.add(joueurIcone);
 		Fond.add(joueurName);
 		Fond.add(indication);
 		Fond.add(explorateurIcone);
 		Fond.add(explorateurValeur);
+		Fond.add(lancerDe);
 		Fond.add(Aide);
 		Fond.add(aideIcone);
 		Plateau.mouseInputListener = new PlateauListener(Aide);
