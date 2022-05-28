@@ -17,7 +17,7 @@ class Imageslider extends JFrame  implements ActionListener
     JPanel p;
     public Imageslider(int regle) throws IOException {
         setLayout(new BorderLayout( ));
-        setSize(1200, 720);
+        setSize(1200, 734);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         //setBackground(Color.lightGray);
@@ -92,31 +92,37 @@ class Imageslider extends JFrame  implements ActionListener
             BufferedImage bufferedImage = ImageIO.read(new File("Images/Menu_Regles_Generales(1).png"));
             Image image0 = bufferedImage.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
 
+            BufferedImage bufferedImage10 = ImageIO.read(new File("Images/Menu_Regles_Generales2.png"));
+            Image image1 = bufferedImage10.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
+
             BufferedImage bufferedImage1 = ImageIO.read(new File("Images/Menu_Regles_TuilesV.png"));
-            Image image1 = bufferedImage1.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
+            Image image2 = bufferedImage1.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
 
             BufferedImage bufferedImage2 = ImageIO.read(new File("Images/Menu_Regles_TuilesR.png"));
-            Image image2 = bufferedImage2.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
+            Image image3 = bufferedImage2.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
 
             BufferedImage bufferedImage3 = ImageIO.read(new File("Images/Menu_Regles_TuilesVR.png"));
-            Image image3 = bufferedImage3.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
+            Image image4 = bufferedImage3.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
 
             BufferedImage bufferedImage4 = ImageIO.read(new File("Images/Volcan.png"));
-            Image image4 = bufferedImage4.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
+            Image image5 = bufferedImage4.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
 
             BufferedImage bufferedImage5 = ImageIO.read(new File("Images/deCreature.png"));
-            Image image5 = bufferedImage5.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
+            Image image6 = bufferedImage5.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
 
             BufferedImage bufferedImage6 = ImageIO.read(new File("Images/Dbaleine.png"));
-            Image image6 = bufferedImage6.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
+            Image image7 = bufferedImage6.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
 
             BufferedImage bufferedImage7 = ImageIO.read(new File("Images/Drequin.png"));
-            Image image7 = bufferedImage7.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
+            Image image8 = bufferedImage7.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
 
             BufferedImage bufferedImage8 = ImageIO.read(new File("Images/Deserpant.png"));
-            Image image8 = bufferedImage8.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
+            Image image9 = bufferedImage8.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
 
-            s = new ImageIcon[9];
+            BufferedImage bufferedImage9 = ImageIO.read(new File("Images/Menu_Regles_Creature.png"));
+            Image image10 = bufferedImage9.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
+
+            s = new ImageIcon[11];
             s[0] = new ImageIcon(image0);
             s[1] = new ImageIcon(image1);
             s[2] = new ImageIcon(image2);
@@ -126,6 +132,8 @@ class Imageslider extends JFrame  implements ActionListener
             s[6] = new ImageIcon(image6);
             s[7] = new ImageIcon(image7);
             s[8] = new ImageIcon(image8);
+            s[9] = new ImageIcon(image9);
+            s[10] = new ImageIcon(image10);
             l.setIcon(s[0]);
         }
     }
