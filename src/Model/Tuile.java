@@ -148,7 +148,7 @@ public class Tuile extends Piece {
 			}
 			if ((posX == 3 && posY == 1) || (posX == 2 && posY == 2) || (posX == 21 && posY == 1)
 					|| (posX == 22 && posY == 2)) {
-				tuileTmp.typeTuile = TypeTuile.ARRIVE;
+				tuileTmp.typeTuile = TypeTuile.ARRIVEE;
 			}
 			if (posY == 4) {
 				if (posX == 0) {
@@ -294,7 +294,7 @@ public class Tuile extends Piece {
 			}
 			if ((posX == 3 && posY == 11) || (posX == 2 && posY == 10) || (posX == 21 && posY == 11)
 					|| (posX == 22 && posY == 10)) {
-				tuileTmp.typeTuile = TypeTuile.ARRIVE;
+				tuileTmp.typeTuile = TypeTuile.ARRIVEE;
 			}
 		}
 	}

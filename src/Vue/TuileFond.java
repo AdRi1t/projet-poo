@@ -62,7 +62,7 @@ public class TuileFond {
  	 */
  	public static void afficherTuile(Graphics2D g2d) {
 	    	for(Tuile tuileTmp : Tuile.listeTuile) {
-	    		if(tuileTmp.getTypeTuile()!= TypeTuile.VIDE || tuileTmp.getTypeTuile()!= TypeTuile.ARRIVE) {
+	    		if(tuileTmp.getTypeTuile()!= TypeTuile.VIDE || tuileTmp.getTypeTuile()!= TypeTuile.ARRIVEE) {
 		    		if(tuileTmp.getTypeTuile() == TypeTuile.MER) {
 		    			tuileTmp.setTerrain(null);
 		    		}
@@ -128,7 +128,7 @@ public class TuileFond {
 			volcanI = volcan.getSubimage(100,100, 376, 376);
 			
 			for(Tuile tuileTmp : Tuile.listeTuile) {
-				if(tuileTmp.getTypeTuile()!= TypeTuile.VIDE || tuileTmp.getTypeTuile()!= TypeTuile.MER || tuileTmp.getTypeTuile()!= TypeTuile.ARRIVE) {
+				if(tuileTmp.getTypeTuile()!= TypeTuile.VIDE || tuileTmp.getTypeTuile()!= TypeTuile.MER || tuileTmp.getTypeTuile()!= TypeTuile.ARRIVEE) {
 					if(tuileTmp.getEffetTuile() == TuileEffet.BALEINE_ROUGE) {
 						tuileTmp.setEffet(baleineRougeI.getScaledInstance(100,100, 0));
 					}
@@ -168,6 +168,21 @@ public class TuileFond {
 				}
 			}
 	 	}
+ 	
+ 	public static void afficherTuileJoueur(Graphics2D g2d,Joueur joueur) {
+ 		int i = 0;
+ 		int j = 0;
+ 		for(Tuile tuile : joueur.getMainJoueur().tuiles) {
+ 			if(i<70) {
+ 				g2d.drawImage(tuile.getEffet(), 1020+i, 110+j, null);
+	 			i+=70;
+ 			}else {
+ 				g2d.drawImage(tuile.getEffet(), 1020+i, 110+j, null);
+ 				i=0;
+ 				j+=70;
+ 			}
+ 		}
+ 	}
  	/**
  	 * Affiche les Explorateur.
  	 *

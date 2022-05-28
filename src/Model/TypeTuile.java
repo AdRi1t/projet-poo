@@ -20,7 +20,7 @@ public enum TypeTuile {
     PLAGE,
     MER,
     VIDE,
-    ARRIVE;
+    ARRIVEE;
 
 	/**
 	 * Crée une liste de {@link Model.TypeTuile} pour les tuiles.

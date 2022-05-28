@@ -51,6 +51,7 @@ import Controlleur.PlateauListener;
 import Model.Joueur;
 import Model.LancerDe;
 import Model.Tuile;
+import Model.TypeTuile;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -108,7 +109,7 @@ public class Plateau extends JFrame{
 	 * Permets d'afficher le plateau et le joueur dont c'est le tour.
 	 * @throws IOException Signals that an I/O exception has occurred.
 	 */
-	public static void afficherPlateau() throws IOException {
+	public static void affichePhaseRetournement() throws IOException {
 		JPanel fond = new DrawPlateau();
 		Fond = fond;
 		Joueur joueur = Joueur.listeJoueur.get(Joueur.indexTour);
@@ -156,7 +157,7 @@ public class Plateau extends JFrame{
 		Fond = fond;
 		ImageIcon explorateurImage;
 		explorateurImage = new ImageIcon(TuileFond.getExplorateurImage(joueur.getCouleur()));
-		
+	
 		JLabel joueurIcone = new JLabel(joueur.getIcone(),JLabel.CENTER);
 		JLabel joueurName = new JLabel(joueur.getNom(),JLabel.CENTER);
 		JLabel indication = new JLabel("<html>Placer &nbsp un<br>explorateur</html>",JLabel.CENTER);
@@ -164,7 +165,7 @@ public class Plateau extends JFrame{
 		JLabel explorateurValeur = new JLabel("Valeur: "+joueur.getMainJoueur().explorateurAPlacer().getValeur(),JLabel.CENTER);
 		
 		joueurIcone.setBounds(new Rectangle(22,130,joueur.getIcone().getIconWidth(),joueur.getIcone().getIconHeight()));
-		joueurName.setForeground(new Color(250,250,250));
+		joueurName.setForeground(new Color(255,255,255));
 		joueurName.setFont(new Font("Impact",Font.TRUETYPE_FONT,26));
 		joueurName.setBounds(15,75,165,50);
 		joueurName.setVerticalAlignment(JLabel.NORTH);
@@ -206,8 +207,6 @@ public class Plateau extends JFrame{
 				}
 			}
 		});
-		
-		
 		Fond.setLayout(null);
 		Fond.add(joueurIcone);
 		Fond.add(joueurName);
@@ -220,23 +219,6 @@ public class Plateau extends JFrame{
 		Plateau.mouseInputListener = new PlateauListener(Aide);
 		Fond.addMouseMotionListener(Plateau.mouseInputListener);
 		Fond.addMouseListener(Plateau.mouseInputListener);
-		main_frame.add(Fond);
-		main_frame.setVisible(true); 
-	}
-	
-	/**
-	 * Afficher l'aide (pas encore terminer) .
-	 *
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 */
-	public static void afficherAide() throws IOException {
-		JPanel fond = new DrawPlateau();
-		fond.setLayout(null);
-		Fond = fond;
-		JLabel Aide = new JLabel(new ImageIcon("Images/Aide1.png"));
-		Aide.setBounds(new Rectangle(0,0,1200,720));
-		Fond.addMouseListener(new PlateauListener(null));
-		Fond.add(Aide);
 		main_frame.add(Fond);
 		main_frame.setVisible(true); 
 	}
@@ -271,13 +253,12 @@ public class Plateau extends JFrame{
 	 */
 	public static void afficherTuileInfo() throws IOException {
 		JLabel info = new JLabel("");
-		info.setForeground(new Color(240,240,240));
+		info.setForeground(new Color(0,0,0));
 		info.setFont(new Font("Corbel", Font.BOLD, 20));
-		info.setBounds(1015,180,167,162);
-		info.setBorder(new LineBorder(new Color(0, 0, 0),3));
+		info.setBounds(1018,405,164,162);
+		//info.setBorder(new LineBorder(new Color(0, 0, 0),3));
 		info.setText("Effet de la tuile");
 		info.setVerticalAlignment(JLabel.NORTH);
-		Plateau.afficherPlateau();
 		Fond.setLayout(null);
 		Fond.add(info);
 		main_frame.add(Fond);
@@ -314,6 +295,19 @@ public class Plateau extends JFrame{
 
 	public static void setMouseInputListener(MouseInputListener mouseInputListener) {
 		Plateau.mouseInputListener = mouseInputListener;
+	}
+
+	public static void afficheFinDePartie() {
+		JPanel fond = new DrawPlateau();
+		Fond = fond;
+		JLabel victoire = new JLabel(new ImageIcon("Images/FenetreVictoire.png"));
+		Fond.add(victoire);
+		Fond.removeMouseListener(Plateau.mouseInputListener);
+		Fond.removeMouseMotionListener(Plateau.mouseInputListener);
+		main_frame.add(Fond);
+		main_frame.setVisible(true);
+		System.exit(0);
+		
 	}
 
 }
@@ -464,6 +458,7 @@ class DrawPlateau extends JPanel{
 		}
 		TuileFond.afficherTuile(g2d);
 		TuileFond.afficherExplorateur(g2d);
+		TuileFond.afficherTuileJoueur(g2d,Joueur.listeJoueur.get(Joueur.indexTour));
 		if(Plateau.getIndexTuileEvidence()>=0) {
 			Tuile specialTuile = Tuile.listeTuile.get(Plateau.getIndexTuileEvidence());
 			g2d.setColor(new Color(240, 20, 20, 120));

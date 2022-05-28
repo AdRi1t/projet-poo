@@ -15,6 +15,7 @@ import javax.swing.event.MouseInputListener;
 import Model.Explorateur;
 import Model.Joueur;
 import Model.Tuile;
+import Model.TuileEffet;
 import Model.TypeTuile;
 import Vue.AideJoueur;
 import Vue.Plateau;
@@ -62,7 +63,6 @@ public class PlateauListener implements MouseInputListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if (e.getComponent() == source) {
-			System.out.println("help");
 			if (AideJoueur.aideActive == false) {
 				AideJoueur.aideActive = true;
 				AideJoueur.init_aide();
@@ -79,7 +79,7 @@ public class PlateauListener implements MouseInputListener {
 				if(phaseDePlacement == true) {
 					Plateau.affichePlacementExplorateur(joueur);
 				}else {
-					Plateau.afficherPlateau();
+					Plateau.affichePhaseRetournement();
 				}
 			} catch (IOException e1) {
 				e1.printStackTrace();
@@ -89,7 +89,7 @@ public class PlateauListener implements MouseInputListener {
 			int index = joueur.listeJoueur.indexOf(joueur);
 			for (Tuile tuileTmp : Tuile.listeTuile) {
 				if (tuileTmp.getTypeTuile() != TypeTuile.VIDE || tuileTmp.getTypeTuile() != TypeTuile.MER
-						|| tuileTmp.getTypeTuile() != TypeTuile.ARRIVE) {
+						|| tuileTmp.getTypeTuile() != TypeTuile.ARRIVEE) {
 					if (tuileTmp.getHexagon() != null && tuileTmp.getHexagon().contains(e.getPoint())) {
 						Explorateur explorateurTmp = joueur.getMainJoueur().explorateurAPlacer();
 						if (joueur.placerExplorateur(tuileTmp, explorateurTmp) == true) {
@@ -113,10 +113,12 @@ public class PlateauListener implements MouseInputListener {
 		if (phaseDePlacement == false && AideJoueur.aideActive == false) {
 			for (Tuile tuileTmp : Tuile.listeTuile) {
 				if (tuileTmp.getTypeTuile() != TypeTuile.VIDE || tuileTmp.getTypeTuile() != TypeTuile.MER
-						|| tuileTmp.getTypeTuile() != TypeTuile.ARRIVE) {
+						|| tuileTmp.getTypeTuile() != TypeTuile.ARRIVEE) {
 					if (tuileTmp.getHexagon() != null && tuileTmp.getHexagon().contains(e.getPoint())) {
 						if (TuileControlleur.estRetournable(tuileTmp)) {
-							if (tuileTmp.isFaceUp() == true && tuileSelection == false) {
+							if(tuileTmp.getEffetTuile() == TuileEffet.VOLCAN){
+								Plateau.afficheFinDePartie();
+							}else if (tuileTmp.isFaceUp() == true && tuileSelection == false) {
 								tuileTmp.setFaceUp(false);
 								tuileSelection = true;
 							} else if (tuileSelection == true && tuileTmp.isFaceUp() == false) {
@@ -132,7 +134,7 @@ public class PlateauListener implements MouseInputListener {
 								}
 							}
 							try {
-								Plateau.afficherPlateau();
+								Plateau.affichePhaseRetournement();
 								Plateau.afficherTuileInfo();
 							} catch (IOException e1) {
 								System.err.println("Immpossible d'afficher le nouveau plateau");
@@ -215,7 +217,7 @@ public class PlateauListener implements MouseInputListener {
 		}
 		if (AideJoueur.aideActive == true && phaseDePlacement == false) {
 			try {
-				Plateau.afficherPlateau();
+				Plateau.affichePhaseRetournement();
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -237,8 +239,10 @@ public class PlateauListener implements MouseInputListener {
 				if (tuileTmp.getHexagon() != null && tuileTmp.getHexagon().contains(e.getPoint())) {
 					Plateau.setIndexTuileEvidence(tuileTmp.getIndex());
 					try {
-						Plateau.afficherPlateau();
-						Plateau.afficherTuileInfo();
+						Plateau.affichePhaseRetournement();
+						if(tuileSelection==true) {
+							Plateau.afficherTuileInfo();
+						}
 					} catch (IOException e1) {
 						e1.printStackTrace();
 					}
