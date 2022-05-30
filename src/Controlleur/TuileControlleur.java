@@ -46,7 +46,7 @@ public class TuileControlleur {
 		}
 		return count;
 	}
-	
+	 
 	/**
 	 * Pour savoir si on peut retourner une tuile.
 	 *
@@ -65,25 +65,4 @@ public class TuileControlleur {
 		return false;
 	}
 
-	/**
-	 * Pour savoir si on a fini le placement des explorateur.
-	 *
-	 * @return vrai si on a fini.
-	 */
-	public static boolean phasePlacementTerminer() {
-		int nombreAPoser = (Joueur.listeJoueur.size()*10);
-		for(Joueur joueur: Joueur.listeJoueur) {
-			for(Explorateur explorateur : joueur.getMainJoueur().pionExplorateur) {
-				if(explorateur.getEmplacement() != null) {
-					nombreAPoser -=1;
-				}
-			}
-		}
-		if(nombreAPoser == 0) {
-			return true;
-		}else {
-		return false;
-		}	
-	}
-	
 }

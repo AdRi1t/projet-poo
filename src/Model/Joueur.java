@@ -41,10 +41,12 @@ public class Joueur {
     private MainJoueur mainJoueur;
     
     /** L'image de profil du joueur. */
-    private ImageIcon icone;
+    private ImageIcon icon;
     
     /** La couleur de ces pions. */
     private CouleurExplorateur couleur;
+    
+	public PhaseDuTour phaseDeJeu;
     
     /**
 	 * Instancie un nouveau joueur
@@ -54,6 +56,7 @@ public class Joueur {
 	public Joueur(String nom){
         super();
         this.setNom(nom);
+        this.phaseDeJeu = PhaseDuTour.RETOURNER;
         mainJoueur = new MainJoueur();
     }
 	
@@ -86,7 +89,7 @@ public class Joueur {
 		}
 		x = imageBuff.getWidth();
 		y = imageBuff.getHeight();
-		icone = new ImageIcon(imageBuff.getScaledInstance((int)(x/4),(int)(y/4), 0));
+		icon = new ImageIcon(imageBuff.getScaledInstance((int)(x/4),(int)(y/4), 0));
 	}
 	
     /**
@@ -132,6 +135,25 @@ public class Joueur {
     		}
     	}
     	explorateur.setEmplacement(tuile);
+    	return true;
+    }
+    /**
+     * Place un {@link Bateau}. donne à un pion explorateur une case {@link Tuile}
+     *
+     * @param tuile La tuile où est poser le bateau
+     * @param bateau le bateau du joueur
+     * @return true, si on a réussi à le poser
+     */
+    public boolean placerBateau(Tuile tuile, Bateau bateau) {
+    	if(tuile.getTypeTuile() != TypeTuile.MER ) {
+    		return false;
+    	}
+    	for(Bateau bateauTmp: Bateau.listeBateau) {
+   			if (bateauTmp.getEmplacement() == tuile) {
+   				return false;
+   			}
+    	}	
+    	bateau.setEmplacement(tuile);
     	return true;
     }
     
@@ -180,8 +202,8 @@ public class Joueur {
 	 * Gets the icone.
 	 * @return the icone
 	 */
-	public ImageIcon getIcone() {
-		return icone;
+	public ImageIcon getIcon() {
+		return icon;
 	}
 	
 	/**

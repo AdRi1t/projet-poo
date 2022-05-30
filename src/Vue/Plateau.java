@@ -48,8 +48,10 @@ import javax.swing.text.AttributeSet.FontAttribute;
 
 import Controlleur.PlateauListener;
 import Controlleur.PlateauListener;
+import Model.Bateau;
 import Model.Joueur;
 import Model.LancerDe;
+import Model.PhaseDuTour;
 import Model.Tuile;
 import Model.TypeTuile;
 
@@ -114,31 +116,39 @@ public class Plateau extends JFrame{
 		Fond = fond;
 		Joueur joueur = Joueur.listeJoueur.get(Joueur.indexTour);
 
-		JLabel joueurIcone = new JLabel(joueur.getIcone(),JLabel.CENTER);
+		JLabel joueurIcon = new JLabel(joueur.getIcon(),JLabel.CENTER);
 		JLabel joueurName = new JLabel(joueur.getNom(),JLabel.CENTER);
-		joueurIcone.setBounds(new Rectangle(22,130,joueur.getIcone().getIconWidth(),joueur.getIcone().getIconHeight()));
+		JLabel indication = new JLabel("<html>Retourner &nbsp une<br>tuile</html>",JLabel.CENTER);
+		joueurIcon.setBounds(new Rectangle(22,130,joueur.getIcon().getIconWidth(),joueur.getIcon().getIconHeight()));
 		joueurName.setForeground(new Color(250,250,250));
 		joueurName.setFont(new Font("Impact",Font.TRUETYPE_FONT,26));
 		joueurName.setBounds(15,75,165,50);
 		joueurName.setVerticalAlignment(JLabel.NORTH);
+		indication.setBounds(15,350,167,120);
+		indication.setForeground(new Color(250,250,250));
+		indication.setFont(new Font("Impact",Font.TRUETYPE_FONT,24));
 		
 		JButton Aide = new JButton("AIDE");
 		Aide.setBounds(1040, 645, 120, 60);
 		Aide.setFont(new Font("Impact",Font.TRUETYPE_FONT,24));
 		Aide.setBorder(new LineBorder(new Color(220,25,120), 3));
-		Aide.addMouseListener(new PlateauListener(Aide));
+		Aide.addMouseListener(new PlateauListener(Aide,null));
 		
-		JLabel aideIcone = new JLabel();
+		JLabel aideIcon = new JLabel();
 		if(AideJoueur.aideActive==true) {
-			aideIcone = new JLabel(AideJoueur.getAideJoueurListe().get(AideJoueur.index));
+			aideIcon = new JLabel(AideJoueur.getAideJoueurListe().get(AideJoueur.index));
 		}
-		aideIcone.setBounds(0,0,1200,720);
+		aideIcon.setBounds(0,0,1200,720);
+		
 		Fond.setLayout(null);
-		Fond.add(joueurIcone);
+		Fond.add(joueurIcon);
 		Fond.add(joueurName);
-		Fond.add(aideIcone);
+		Fond.add(indication);
+		Fond.add(aideIcon);
 		Fond.add(Aide);
-		Plateau.mouseInputListener = new PlateauListener(Aide);
+		Fond.removeMouseListener(Plateau.mouseInputListener);
+		Fond.removeMouseMotionListener(Plateau.mouseInputListener);
+		Plateau.mouseInputListener = new PlateauListener(Aide,null);
 		Fond.addMouseListener(mouseInputListener);
 		Fond.addMouseMotionListener(mouseInputListener);
 		main_frame.add(Fond);
@@ -158,13 +168,13 @@ public class Plateau extends JFrame{
 		ImageIcon explorateurImage;
 		explorateurImage = new ImageIcon(TuileFond.getExplorateurImage(joueur.getCouleur()));
 	
-		JLabel joueurIcone = new JLabel(joueur.getIcone(),JLabel.CENTER);
+		JLabel joueurIcon = new JLabel(joueur.getIcon(),JLabel.CENTER);
 		JLabel joueurName = new JLabel(joueur.getNom(),JLabel.CENTER);
 		JLabel indication = new JLabel("<html>Placer &nbsp un<br>explorateur</html>",JLabel.CENTER);
 		JLabel explorateurIcone = new JLabel(explorateurImage,JLabel.CENTER);
 		JLabel explorateurValeur = new JLabel("Valeur: "+joueur.getMainJoueur().explorateurAPlacer().getValeur(),JLabel.CENTER);
 		
-		joueurIcone.setBounds(new Rectangle(22,130,joueur.getIcone().getIconWidth(),joueur.getIcone().getIconHeight()));
+		joueurIcon.setBounds(new Rectangle(22,130,joueur.getIcon().getIconWidth(),joueur.getIcon().getIconHeight()));
 		joueurName.setForeground(new Color(255,255,255));
 		joueurName.setFont(new Font("Impact",Font.TRUETYPE_FONT,26));
 		joueurName.setBounds(15,75,165,50);
@@ -182,19 +192,67 @@ public class Plateau extends JFrame{
 		Aide.setBounds(1040, 645, 120, 60);
 		Aide.setFont(new Font("Impact",Font.TRUETYPE_FONT,24));
 		Aide.setBorder(new LineBorder(new Color(220,25,120), 3));
-		Aide.addMouseListener(new PlateauListener(Aide));
-		Aide.addMouseMotionListener(new PlateauListener(Aide));
-		JLabel aideIcone = new JLabel();
+		Aide.addMouseListener(new PlateauListener(Aide,null));
+		JLabel aideIcon = new JLabel();
 		if(AideJoueur.aideActive==true) {
-			aideIcone = new JLabel(AideJoueur.getAideJoueurListe().get(AideJoueur.index));
+			aideIcon = new JLabel(AideJoueur.getAideJoueurListe().get(AideJoueur.index));
 		}
-		aideIcone.setBounds(0,0,1200,720);
+		aideIcon.setBounds(0,0,1200,720);	
+		
+		Fond.setLayout(null);
+		Fond.add(joueurIcon);
+		Fond.add(joueurName);
+		Fond.add(indication);
+		Fond.add(explorateurIcone);
+		Fond.add(explorateurValeur);
+		Fond.add(Aide);
+		Fond.add(aideIcon);
+		Fond.removeMouseListener(Plateau.mouseInputListener);
+		Fond.removeMouseMotionListener(Plateau.mouseInputListener);
+		Plateau.mouseInputListener = new PlateauListener(Aide,null);
+		Fond.addMouseMotionListener(Plateau.mouseInputListener);
+		Fond.addMouseListener(Plateau.mouseInputListener);
+		main_frame.add(Fond);
+		main_frame.setVisible(true); 
+	}
 	
+	/**
+	 * Permets d'afficher le plateau et le joueur dont c'est le tour.
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
+	public static void affichePhaseLancerDe() throws IOException {
+		JPanel fond = new DrawPlateau();
+		Fond = fond;
+		Joueur joueur = Joueur.listeJoueur.get(Joueur.indexTour);
+
+		JLabel joueurIcon = new JLabel(joueur.getIcon(),JLabel.CENTER);
+		JLabel joueurName = new JLabel(joueur.getNom(),JLabel.CENTER);
+		JLabel indication = new JLabel("<html>Lancer &nbsp le<br>dé</html>",JLabel.CENTER);
+		joueurIcon.setBounds(new Rectangle(22,130,joueur.getIcon().getIconWidth(),joueur.getIcon().getIconHeight()));
+		joueurName.setForeground(new Color(250,250,250));
+		joueurName.setFont(new Font("Impact",Font.TRUETYPE_FONT,26));
+		joueurName.setBounds(15,75,165,50);
+		joueurName.setVerticalAlignment(JLabel.NORTH);
+		
+		indication.setBounds(15,350,167,120);
+		indication.setForeground(new Color(250,250,250));
+		indication.setFont(new Font("Impact",Font.TRUETYPE_FONT,24));
+		JButton Aide = new JButton("AIDE");
+		Aide.setBounds(1040, 645, 120, 60);
+		Aide.setFont(new Font("Impact",Font.TRUETYPE_FONT,24));
+		Aide.setBorder(new LineBorder(new Color(220,25,120), 3));
+		JLabel aideIcon = new JLabel();
+		if(AideJoueur.aideActive==true) {
+			aideIcon = new JLabel(AideJoueur.getAideJoueurListe().get(AideJoueur.index));
+		}
+		aideIcon.setBounds(0,0,1200,720);
+
+
 		JButton lancerDe = new JButton("Lancer le dé");
-		lancerDe.setBounds(510, 670, 200, 50);
+		lancerDe.setBounds(510, 670, 200, 45);
 		lancerDe.setFont(new Font("Impact",Font.TRUETYPE_FONT,24));
 		lancerDe.setBorder(new LineBorder(new Color(220,25,120), 3));
-		lancerDe.addActionListener(new ActionListener() {
+		/*lancerDe.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				LancerDe lance;
@@ -207,16 +265,73 @@ public class Plateau extends JFrame{
 				}
 			}
 		});
+		*/
 		Fond.setLayout(null);
-		Fond.add(joueurIcone);
+		Fond.add(joueurIcon);
 		Fond.add(joueurName);
 		Fond.add(indication);
-		Fond.add(explorateurIcone);
-		Fond.add(explorateurValeur);
-		Fond.add(lancerDe);
 		Fond.add(Aide);
-		Fond.add(aideIcone);
-		Plateau.mouseInputListener = new PlateauListener(Aide);
+		Fond.setComponentZOrder(lancerDe,1);
+		Fond.add(aideIcon);
+		Fond.removeMouseListener(Plateau.mouseInputListener);
+		Fond.removeMouseMotionListener(Plateau.mouseInputListener);
+		Plateau.mouseInputListener = new PlateauListener(Aide,lancerDe);
+		Fond.addMouseMotionListener(Plateau.mouseInputListener);
+		Fond.addMouseListener(Plateau.mouseInputListener);
+		main_frame.add(Fond);
+		main_frame.setVisible(true); 
+	}
+	
+	public static void affichePlacementBateau(Joueur joueur) {
+		JPanel fond = new DrawPlateau();
+		Fond = fond;
+		
+		BufferedImage bateauBuff;
+		ImageIcon bateauImage = new ImageIcon();
+		try {
+			bateauBuff = ImageIO.read(new File("Images/PieceBateau.png"));
+			bateauImage = new ImageIcon(bateauBuff.getScaledInstance(200,200, Image.SCALE_FAST));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	
+		JLabel joueurIcon = new JLabel(joueur.getIcon(),JLabel.CENTER);
+		JLabel joueurName = new JLabel(joueur.getNom(),JLabel.CENTER);
+		JLabel indication = new JLabel("<html>Placer &nbsp un<br>Bateau</html>",JLabel.CENTER);
+		JLabel bateauIcon = new JLabel(bateauImage,JLabel.CENTER);
+		
+		joueurIcon.setBounds(new Rectangle(22,130,joueur.getIcon().getIconWidth(),joueur.getIcon().getIconHeight()));
+		joueurName.setForeground(new Color(255,255,255));
+		joueurName.setFont(new Font("Impact",Font.TRUETYPE_FONT,26));
+		joueurName.setBounds(15,75,165,50);
+		joueurName.setVerticalAlignment(JLabel.NORTH);
+		indication.setBounds(15,350,167,120);
+		indication.setForeground(new Color(250,250,250));
+		indication.setFont(new Font("Impact",Font.TRUETYPE_FONT,24));
+		bateauIcon.setBounds(new Rectangle(1025,140,150,140));
+
+		
+		JButton Aide = new JButton("AIDE");
+		Aide.setBounds(1040, 645, 120, 60);
+		Aide.setFont(new Font("Impact",Font.TRUETYPE_FONT,24));
+		Aide.setBorder(new LineBorder(new Color(220,25,120), 3));
+		Aide.addMouseListener(new PlateauListener(Aide,null));
+		JLabel aideIcon = new JLabel();
+		if(AideJoueur.aideActive==true) {
+			aideIcon = new JLabel(AideJoueur.getAideJoueurListe().get(AideJoueur.index));
+		}
+		aideIcon.setBounds(0,0,1200,720);	
+		
+		Fond.setLayout(null);
+		Fond.add(joueurIcon);
+		Fond.add(joueurName);
+		Fond.add(indication);
+		Fond.add(bateauIcon);
+		Fond.add(Aide);
+		Fond.add(aideIcon);
+		Fond.removeMouseListener(Plateau.mouseInputListener);
+		Fond.removeMouseMotionListener(Plateau.mouseInputListener);
+		Plateau.mouseInputListener = new PlateauListener(Aide,null);
 		Fond.addMouseMotionListener(Plateau.mouseInputListener);
 		Fond.addMouseListener(Plateau.mouseInputListener);
 		main_frame.add(Fond);
@@ -298,7 +413,7 @@ public class Plateau extends JFrame{
 	}
 
 	public static void afficheFinDePartie() {
-		JPanel fond = new DrawPlateau();
+		JPanel fond = new JPanel();
 		Fond = fond;
 		JLabel victoire = new JLabel(new ImageIcon("Images/FenetreVictoire.png"));
 		Fond.add(victoire);
@@ -307,8 +422,8 @@ public class Plateau extends JFrame{
 		main_frame.add(Fond);
 		main_frame.setVisible(true);
 		System.exit(0);
-		
 	}
+
 
 }
 
@@ -324,7 +439,7 @@ class DrawPlateau extends JPanel{
 	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		int i,j,k,l;
+		int i,j,k;
 		int ligne[] = {7,10,11,10,11,12,11,12,11,10,11,10,7};
 		int colonne = 13;
 		int[] ligneX;
@@ -340,7 +455,6 @@ class DrawPlateau extends JPanel{
 		g2d.setColor(Color.BLACK);
 		
 		k=0;
-		l=0;
 		for (j = 0; j < colonne; j++) {
 			for (i = 0; i < ligne[j]; i++) {
 				hexagon = Plateau.listHexagone.get(k);
@@ -458,6 +572,7 @@ class DrawPlateau extends JPanel{
 		}
 		TuileFond.afficherTuile(g2d);
 		TuileFond.afficherExplorateur(g2d);
+		TuileFond.afficherBateau(g2d);
 		TuileFond.afficherTuileJoueur(g2d,Joueur.listeJoueur.get(Joueur.indexTour));
 		if(Plateau.getIndexTuileEvidence()>=0) {
 			Tuile specialTuile = Tuile.listeTuile.get(Plateau.getIndexTuileEvidence());
@@ -467,3 +582,4 @@ class DrawPlateau extends JPanel{
 		g2d.dispose();
 	}
 }
+ 

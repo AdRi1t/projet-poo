@@ -78,7 +78,12 @@ public class MainJoueur {
      * @param tl the tl
      */
     public void addTuile(Tuile tl){
-        tuiles.add(tl);
+    	if(tl.getEffetTuile() == TuileEffet.BALEINE_ROUGE  || tl.getEffetTuile() == TuileEffet.REQUIN_ROUGE || 
+    		tl.getEffetTuile() == TuileEffet.BATEAU_ROUGE || tl.getEffetTuile() == TuileEffet.DAUPHIN ||
+    		tl.getEffetTuile() == TuileEffet.SERPENT || tl.getEffetTuile() == TuileEffet.SUPPRIME_BALEINE ||
+    		tl.getEffetTuile() == TuileEffet.SUPPRIME_REQUIN) {
+    			tuiles.add(tl);
+    	}
     }
 
     /**

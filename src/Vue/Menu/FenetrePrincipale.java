@@ -1,6 +1,7 @@
 package Vue.Menu;
 import Controlleur.GetAction;
 import Controlleur.RedimensionnerImage;
+import Model.Bateau;
 import Model.CouleurExplorateur;
 import Model.Joueur;
 import Model.Tuile;
@@ -394,6 +395,7 @@ public class FenetrePrincipale implements ActionListener {
 						        frame.setDefaultCloseOperation(3);
 						       	frame.setVisible(true);
 								Plateau.initPlateau(frame);
+								Bateau.initBateauListe(2);
 								Plateau.affichePlacementExplorateur(Joueur.listeJoueur.get(0));
 							} catch (IOException e1) {
 								e1.printStackTrace();
@@ -421,6 +423,7 @@ public class FenetrePrincipale implements ActionListener {
 						        frame.setDefaultCloseOperation(3);
 						       	frame.setVisible(true);
 								Plateau.initPlateau(frame);
+								Bateau.initBateauListe(4);
 								Plateau.affichePlacementExplorateur(Joueur.listeJoueur.get(0));
 							} catch (IOException e1) {
 								e1.printStackTrace();

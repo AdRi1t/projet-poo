@@ -10,6 +10,7 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.management.modelmbean.ModelMBean;
 
+import Model.Bateau;
 import Model.CouleurExplorateur;
 import Model.Explorateur;
 import Model.Joueur;
@@ -83,7 +84,21 @@ public class TuileFond {
 	    		}
 	    	}
 	 	
-	 
+ 	/**
+ 	 * Donne une {@link Image} à {@link Model.Bateau}.
+ 	 */
+ 	public static void setImageBateau(List<Bateau> bateauList) {
+ 		Image bateauTmp;
+ 		try {
+			bateauTmp = ImageIO.read(new File("Images/PieceBateau.png"));
+			for(Bateau bateau : bateauList) {
+	 			bateau.setImageBateau(bateauTmp.getScaledInstance(130,130, 0));
+	 		}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+ 	}
+ 	
  	/**
  	 * Donne une {@link Image} à {@link Model.Tuile#Effet}.
  	 */
@@ -168,7 +183,7 @@ public class TuileFond {
 				}
 			}
 	 	}
- 	
+ 	 
  	public static void afficherTuileJoueur(Graphics2D g2d,Joueur joueur) {
  		int i = 0;
  		int j = 0;
@@ -201,6 +216,22 @@ public class TuileFond {
 		}
 		
 	}
+	/**
+ 	 * Affiche les Bateau.
+ 	 *
+ 	 * @param g2d le contexte pour dessiner.
+ 	 */
+	public static void afficherBateau(Graphics2D g2d) {
+		int x=0,y=0;
+		for(Bateau BateauTmp : Bateau.listeBateau) {
+			if(BateauTmp.getEmplacement()!= null) {
+				x = BateauTmp.getEmplacement().getHexagon().xpoints[0]-65;
+				y = BateauTmp.getEmplacement().getHexagon().ypoints[0]-35;
+				g2d.drawImage(BateauTmp.getImageBateau(),x, y,null);
+			}
+		}
+	}
+	
 	public static Image getExplorateurImage(CouleurExplorateur couleur) {
  		BufferedImage explorateurBuff = null;
  		Image explorateurImage = null;

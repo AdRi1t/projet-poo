@@ -19,9 +19,9 @@ import Vue.Plateau;
 import Vue.TuileFond;
 
 /**
- * <strong>La classe qui nous permet de gérer les tuiles</strong>
+ * <strong>La classe qui nous permet de gÃ©rer les tuiles</strong>
  * <p>
- * Représente une case sur le plateau, avec coordonné, images et effet.
+ * ReprÃ©sente une case sur le plateau, avec coordonnÃ©, images et effet.
  * </p>
  *
  * @author Adrien Taberner
@@ -49,7 +49,7 @@ public class Tuile extends Piece {
 	/** l'index. */
 	private int index;
 
-	/** l'hexagon qui contient exactement où la tuile est placée de type {@link Polygon} */
+	/** l'hexagon qui contient exactement oÃ¹ la tuile est placÃ©e de type {@link Polygon} */
 	private Polygon hexagon = null;
 
 	/** L'image du terrain. {@link Image} */
@@ -57,18 +57,37 @@ public class Tuile extends Piece {
 
 	/**  L'image de l'effet. {@link Image} */
 	private Image Effet;
+	
+	/** Bateau sur tuile */
+	private Bateau BateauSurTuile;
 
 	/**
 	 * Instancie une nouvelle Tuile avec sa position dans le plateau et sont index.
 	 *
 	 * @param posX  Position X sur le tableau.
 	 * @param posY  Position Y sur le tableau.
-	 * @param index L'index de la tuile De 0 à 168.
+	 * @param index L'index de la tuile De 0 Ã  168.
 	 */
 	public Tuile(int posX, int posY, int index) {
 		this.PositionX = posX;
 		this.PositionY = posY;
 		this.index = index;
+	}
+
+	public Bateau getBateauSurTuile() {
+		return BateauSurTuile;
+	}
+	
+	public boolean isBateauSurTuile() {
+		if(this.BateauSurTuile != null) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	public void setBateauSurTuile(Bateau bateauSurTuile) {
+		BateauSurTuile = bateauSurTuile;
 	}
 
 	/**
@@ -85,7 +104,7 @@ public class Tuile extends Piece {
 	}
 
 	/**
-	 * Donne un {@link TypeTuile} à toutes les tuiles de la liste.
+	 * Donne un {@link TypeTuile} Ã  toutes les tuiles de la liste.
 	 */
 	private static void initTypeTuiles() {
 		ArrayList<TypeTuile> randomTypeTuiles = TypeTuile.getRandomTuiles();
@@ -300,7 +319,7 @@ public class Tuile extends Piece {
 	}
 
 	/**
-	 * Permets de donner un effet {@link TuileEffet} à chaque tuile de {@link Model.Tuile#listeTuile}.
+	 * Permets de donner un effet {@link TuileEffet} Ã  chaque tuile de {@link Model.Tuile#listeTuile}.
 	 */
 	private static void initEffetTuiles() {
 		ArrayList<TuileEffet> randomEffetPlage = TuileEffet.getPlageEffet();
@@ -339,7 +358,7 @@ public class Tuile extends Piece {
 	}
 
 	/**
-	 * Fonction pour créer {@link Model.Tuile#tuliesTab} qui sert à repérer les tuiles 
+	 * Fonction pour crÃ©er {@link Model.Tuile#tuliesTab} qui sert Ã  repÃ©rer les tuiles 
 	 * et leur position sur le plateau.
 	 */
 	private static void initTabTuiles() { 
