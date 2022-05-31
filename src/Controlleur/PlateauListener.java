@@ -153,7 +153,7 @@ public class PlateauListener implements MouseInputListener {
 					tuile = tuileTmp;
 				}
 			}
-			if (tuile.getTypeTuile() != TypeTuile.VIDE ) {
+			if (tuile != null && tuile.getTypeTuile() != TypeTuile.VIDE ) {
 				if(ExplorateurControlleur.getIndexTuileSelection1() == -1 && ExplorateurControlleur.getIndexTuileSelection2() == -1) {
 					ExplorateurControlleur.setIndexTuileSelection1(tuile.getIndex());
 					Plateau.affichePhaseDeplacement(joueur);

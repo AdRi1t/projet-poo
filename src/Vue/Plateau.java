@@ -140,11 +140,28 @@ public class Plateau extends JFrame{
 			aideIcon = new JLabel(AideJoueur.getAideJoueurListe().get(AideJoueur.index));
 		}
 		aideIcon.setBounds(0,0,1200,720);
-		
+		JButton lancerDe = new JButton("Lancer le dé");
+		lancerDe.setBounds(510, 670, 200, 45);
+		lancerDe.setFont(new Font("Impact",Font.TRUETYPE_FONT,24));
+		lancerDe.setBorder(new LineBorder(new Color(220,25,120), 3));
+		lancerDe.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				LancerDe lance;
+				try {
+					lance = new LancerDe();
+					lance.setAlwaysOnTop(true);
+					lance.setVisible(true);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		Fond.setLayout(null);
 		Fond.add(joueurIcon);
 		Fond.add(joueurName);
 		Fond.add(indication);
+		Fond.add(lancerDe);
 		Fond.add(aideIcon);
 		Fond.add(Aide);
 		Fond.removeMouseListener(Plateau.mouseInputListener);
@@ -199,13 +216,30 @@ public class Plateau extends JFrame{
 			aideIcon = new JLabel(AideJoueur.getAideJoueurListe().get(AideJoueur.index));
 		}
 		aideIcon.setBounds(0,0,1200,720);	
-		
+		JButton lancerDe = new JButton("Lancer le dé");
+		lancerDe.setBounds(510, 670, 200, 45);
+		lancerDe.setFont(new Font("Impact",Font.TRUETYPE_FONT,24));
+		lancerDe.setBorder(new LineBorder(new Color(220,25,120), 3));
+		lancerDe.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				LancerDe lance;
+				try {
+					lance = new LancerDe();
+					lance.setAlwaysOnTop(true);
+					lance.setVisible(true);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		Fond.setLayout(null);
 		Fond.add(joueurIcon);
 		Fond.add(joueurName);
 		Fond.add(indication);
 		Fond.add(explorateurIcone);
 		Fond.add(explorateurValeur);
+		Fond.add(lancerDe);
 		Fond.add(Aide);
 		Fond.add(aideIcon);
 		Fond.removeMouseListener(Plateau.mouseInputListener);
@@ -238,6 +272,7 @@ public class Plateau extends JFrame{
 		indication.setBounds(15,350,167,120);
 		indication.setForeground(new Color(250,250,250));
 		indication.setFont(new Font("Impact",Font.TRUETYPE_FONT,24));
+		
 		JButton Aide = new JButton("AIDE");
 		Aide.setBounds(1040, 645, 120, 60);
 		Aide.setFont(new Font("Impact",Font.TRUETYPE_FONT,24));
@@ -253,7 +288,7 @@ public class Plateau extends JFrame{
 		lancerDe.setBounds(510, 670, 200, 45);
 		lancerDe.setFont(new Font("Impact",Font.TRUETYPE_FONT,24));
 		lancerDe.setBorder(new LineBorder(new Color(220,25,120), 3));
-		/*lancerDe.addActionListener(new ActionListener() {
+		lancerDe.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				LancerDe lance;
@@ -266,13 +301,12 @@ public class Plateau extends JFrame{
 				}
 			}
 		});
-		*/
 		Fond.setLayout(null);
 		Fond.add(joueurIcon);
 		Fond.add(joueurName);
 		Fond.add(indication);
 		Fond.add(Aide);
-		Fond.setComponentZOrder(lancerDe,1);
+		Fond.add(lancerDe);
 		Fond.add(aideIcon);
 		Fond.removeMouseListener(Plateau.mouseInputListener);
 		Fond.removeMouseMotionListener(Plateau.mouseInputListener);
@@ -311,11 +345,30 @@ public class Plateau extends JFrame{
 		}
 		aideIcon.setBounds(0,0,1200,720);	
 		
+		JButton lancerDe = new JButton("Lancer le dé");
+		lancerDe.setBounds(510, 670, 200, 45);
+		lancerDe.setFont(new Font("Impact",Font.TRUETYPE_FONT,24));
+		lancerDe.setBorder(new LineBorder(new Color(220,25,120), 3));
+		lancerDe.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				LancerDe lance;
+				try {
+					lance = new LancerDe();
+					lance.setAlwaysOnTop(true);
+					lance.setVisible(true);
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		
 		Fond.setLayout(null);
 		Fond.add(joueurIcon);
 		Fond.add(joueurName);
 		Fond.add(indication);
 		Fond.add(Aide);
+		Fond.add(lancerDe);
 		Fond.add(aideIcon);
 		Fond.removeMouseListener(Plateau.mouseInputListener);
 		Fond.removeMouseMotionListener(Plateau.mouseInputListener);
