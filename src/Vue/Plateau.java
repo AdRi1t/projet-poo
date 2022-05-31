@@ -671,6 +671,7 @@ class DrawPlateau extends JPanel{
 		TuileFond.afficherTuile(g2d);
 		TuileFond.afficherExplorateur(g2d);
 		TuileFond.afficherBateau(g2d);
+		TuileFond.afficherCreature(g2d);
 		TuileFond.afficherTuileJoueur(g2d,Joueur.listeJoueur.get(Joueur.indexTour));
 		if(Plateau.getIndexTuileEvidence()>=0) {
 			Tuile specialTuile = Tuile.listeTuile.get(Plateau.getIndexTuileEvidence());

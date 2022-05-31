@@ -3,6 +3,7 @@ import Controlleur.GetAction;
 import Controlleur.RedimensionnerImage;
 import Model.Bateau;
 import Model.CouleurExplorateur;
+import Model.Creature;
 import Model.Joueur;
 import Model.Tuile;
 import Vue.Plateau;
@@ -428,6 +429,7 @@ public class FenetrePrincipale implements ActionListener {
 						       	frame.setVisible(true);
 								Plateau.initPlateau(frame);
 								Bateau.initBateauListe(2);
+								Creature.initCreature();
 								Plateau.affichePlacementExplorateur(Joueur.listeJoueur.get(0));
 							} catch (IOException e1) {
 								e1.printStackTrace();
@@ -456,6 +458,7 @@ public class FenetrePrincipale implements ActionListener {
 						       	frame.setVisible(true);
 								Plateau.initPlateau(frame);
 								Bateau.initBateauListe(4);
+								Creature.initCreature();
 								Plateau.affichePlacementExplorateur(Joueur.listeJoueur.get(0));
 							} catch (IOException e1) {
 								e1.printStackTrace();

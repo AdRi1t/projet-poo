@@ -12,6 +12,7 @@ import javax.management.modelmbean.ModelMBean;
 
 import Model.Bateau;
 import Model.CouleurExplorateur;
+import Model.Creature;
 import Model.Explorateur;
 import Model.Joueur;
 import Model.Tuile;
@@ -97,6 +98,31 @@ public class TuileFond {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+ 	}
+ 	public static void setImageCreature(Creature creature) {
+ 		BufferedImage imageBuff = null;
+		try {
+			imageBuff = ImageIO.read(new File("Images/PiecePNG.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+ 		Image creatureImage = null;
+ 		switch (creature.getType()) {
+		case SERPENT:
+			creatureImage = imageBuff.getSubimage(400,300, 100, 100);
+			break;
+		case BALEINE:
+			creatureImage = imageBuff.getSubimage(600,300, 100, 100);
+			break;
+		case REQUIN:
+			creatureImage = imageBuff.getSubimage(500,300, 100,100);
+			break;
+
+		default:
+			break;
+		}
+	 	creature.setCreatureImage(creatureImage.getScaledInstance(60,60, 0));
+	 	
  	}
  	
  	/**
@@ -195,6 +221,19 @@ public class TuileFond {
  				g2d.drawImage(tuile.getEffet(), 1020+i, 110+j, null);
  				i=0;
  				j+=70;
+ 			}
+ 		}
+ 	}
+ 	
+ 	
+ 	public static void afficherCreature(Graphics2D g2d) {
+ 		int x = 0;
+ 		int y = 0;
+ 		for(Creature creature : Creature.listCreature) {
+ 			if(creature.getCreatureImage() != null && creature.getEmplacement() != null) {
+	 			x = creature.getEmplacement().getHexagon().xpoints[0]-26;
+				y = creature.getEmplacement().getHexagon().ypoints[0]-2;
+				g2d.drawImage(creature.getCreatureImage(),x,y,null);
  			}
  		}
  	}
