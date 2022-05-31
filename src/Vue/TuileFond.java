@@ -204,13 +204,38 @@ public class TuileFond {
  	 * @param g2d le contexte pour dessiner.
  	 */
 	public static void afficherExplorateur(Graphics2D g2d) {
-		int x=0,y=0;
-		for(Joueur joueurTmp : Joueur.listeJoueur) {
-			for(Explorateur explorateur : joueurTmp.getMainJoueur().pionExplorateur) {
+		int x1=0,y1=0, x2=0,y2=0;
+		int nombreExploTuile = 0;
+		Explorateur explorateur2 = null;
+		for(Joueur joueur : Joueur.listeJoueur) {
+			for(Explorateur explorateur : joueur.getMainJoueur().pionExplorateur) {
 				if(explorateur.getEmplacement()!= null) {
-					x = explorateur.getEmplacement().getHexagon().xpoints[0]-15;
-					y = explorateur.getEmplacement().getHexagon().ypoints[0]+10;
-					g2d.drawImage(explorateur.getImageExpolorateur(),x, y,null);
+					nombreExploTuile = 1;
+					for(Joueur joueurTmp : Joueur.listeJoueur) {
+						for(Explorateur explorateurTmp : joueurTmp.getMainJoueur().pionExplorateur) {
+							if(explorateur.getEmplacement() == explorateurTmp.getEmplacement() && explorateur!= explorateurTmp) {
+								nombreExploTuile += 1;
+								explorateur2 = explorateurTmp;
+						}
+					}
+				}
+				switch (nombreExploTuile) {
+				case 1:
+					x1 = explorateur.getEmplacement().getHexagon().xpoints[0]-15;
+					y1 = explorateur.getEmplacement().getHexagon().ypoints[0]+10;
+					g2d.drawImage(explorateur.getImageExpolorateur(),x1, y1,null);
+					break;
+				case 2:
+					x1 = explorateur.getEmplacement().getHexagon().xpoints[0]-5;
+					y1 = explorateur.getEmplacement().getHexagon().ypoints[0]+10;
+					x2 = explorateur.getEmplacement().getHexagon().xpoints[0]-25;
+					y2 = explorateur.getEmplacement().getHexagon().ypoints[0]+10;
+					g2d.drawImage(explorateur.getImageExpolorateur(),x1, y1,null);
+					g2d.drawImage(explorateur2.getImageExpolorateur(),x2, y2,null);
+					break;
+				default:	
+					break;
+					}
 				}
 			}
 		}

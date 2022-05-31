@@ -19,8 +19,10 @@ public class Explorateur {
     private CouleurExplorateur couleur;
     private Tuile emplacement = null;
     private boolean enBateau = false;
-    private Bateau bateau = null;
-    private Image imageExpolorateur;
+	private Bateau bateau = null;
+
+
+	private Image imageExpolorateur;
 
     public Explorateur(int valeur, CouleurExplorateur couleur){
         super();
@@ -65,6 +67,15 @@ public class Explorateur {
     	return pionExplorateur;
     }
     
+    public boolean isEnBateau() {
+    	if(this.bateau != null) {
+    		this.enBateau = true;
+    		return true;
+    	}else {
+    		return false;
+    	}
+    }
+    
     public CouleurExplorateur getCouleur(){
         return couleur;
     }
@@ -88,4 +99,16 @@ public class Explorateur {
 	public void setImageExpolorateur(Image imageExpolorateur) {
 		this.imageExpolorateur = imageExpolorateur;
 	}
+	
+	public Bateau getBateau() {
+		return bateau;
+		}
+
+	public void setBateau(Bateau bateau) {
+		this.bateau = bateau;
+	}
+	public void setEnBateau(boolean enBateau) {
+		this.enBateau = enBateau;
+	}
+
 }

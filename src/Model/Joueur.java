@@ -56,7 +56,7 @@ public class Joueur {
 	public Joueur(String nom){
         super();
         this.setNom(nom);
-        this.phaseDeJeu = PhaseDuTour.RETOURNER;
+        this.phaseDeJeu = PhaseDuTour.DEPLACER;
         mainJoueur = new MainJoueur();
     }
 	

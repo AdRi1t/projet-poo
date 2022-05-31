@@ -143,6 +143,60 @@ public class PlateauListener implements MouseInputListener {
 				}
 			}
 		}
+		
+		if (phaseDePlacementBateau == false && AideJoueur.aideActive == false && joueur.phaseDeJeu == PhaseDuTour.DEPLACER) {
+			Tuile tuile = null;
+			Explorateur explorateur = null;
+			boolean voisin = false;
+			for (Tuile tuileTmp : Tuile.listeTuile) {
+				if (tuileTmp.getHexagon() != null && tuileTmp.getHexagon().contains(e.getPoint())) {
+					tuile = tuileTmp;
+				}
+			}
+			System.out.println("ex :" +explorateur+ "   tuile :"+ tuile);
+			if (tuile.getTypeTuile() != TypeTuile.VIDE ) {
+				if(ExplorateurControlleur.getIndexTuileSelection1() == -1 && ExplorateurControlleur.getIndexTuileSelection2() == -1) {
+					ExplorateurControlleur.setIndexTuileSelection1(tuile.getIndex());
+					Plateau.affichePhaseDeplacement(joueur);
+				}
+				for (Explorateur explorateurTmp : joueur.getMainJoueur().pionExplorateur) {
+					if(explorateurTmp.getEmplacement() == Tuile.listeTuile.get(ExplorateurControlleur.getIndexTuileSelection1()) && Joueur.listeJoueur.get(Joueur.indexTour)==joueur) {
+							explorateur=explorateurTmp;
+					}
+				}
+				if(explorateur == null) {
+					ExplorateurControlleur.setIndexTuileSelection1(-1);
+					Plateau.affichePhaseDeplacement(joueur);
+				}
+				if(ExplorateurControlleur.getIndexTuileSelection1() != -1 && ExplorateurControlleur.getIndexTuileSelection2() == -1) {
+					ExplorateurControlleur.setIndexTuileSelection2(tuile.getIndex());
+				}
+				if(ExplorateurControlleur.getIndexTuileSelection1()!= -1 && ExplorateurControlleur.getIndexTuileSelection2() !=-1  && tuile != null ) {
+					for(Tuile tuilTmp :Tuile.listeTuile.get(ExplorateurControlleur.getIndexTuileSelection1()).getVoisin()) {
+						if(tuilTmp == Tuile.listeTuile.get(ExplorateurControlleur.getIndexTuileSelection2())) {
+							voisin = true;
+						}
+					}
+				}
+				if(ExplorateurControlleur.getIndexTuileSelection1() != -1 && ExplorateurControlleur.getIndexTuileSelection2() !=-1 && voisin == false) {
+					ExplorateurControlleur.setIndexTuileSelection2(-1);
+					ExplorateurControlleur.setIndexTuileSelection2(-1);
+					Plateau.affichePhaseDeplacement(joueur);
+				}else if(ExplorateurControlleur.getIndexTuileSelection1() != -1 && ExplorateurControlleur.getIndexTuileSelection2() !=-1 && voisin == true) {
+					if(ExplorateurControlleur.deplacerPion(explorateur, tuile)) {
+						ExplorateurControlleur.setIndexTuileSelection1(-1);
+						ExplorateurControlleur.setIndexTuileSelection2(-1);
+						joueur.phaseDeJeu = PhaseDuTour.RETOURNER;
+						try {
+							Plateau.affichePhaseRetournement();
+						} catch (IOException e1) {
+							e1.printStackTrace();
+						}
+					}
+				}
+			}
+			System.out.println(ExplorateurControlleur.getIndexTuileSelection1() +"  " + ExplorateurControlleur.getIndexTuileSelection2());
+		}
 		if (phaseDePlacementBateau == false && AideJoueur.aideActive == false && joueur.phaseDeJeu == PhaseDuTour.RETOURNER) {
 			for (Tuile tuileTmp : Tuile.listeTuile) {
 				if (tuileTmp.getTypeTuile() != TypeTuile.VIDE || tuileTmp.getTypeTuile() != TypeTuile.MER
@@ -172,13 +226,13 @@ public class PlateauListener implements MouseInputListener {
 									System.err.println("Immpossible d'afficher le nouveau plateau");
 									e1.printStackTrace();
 								}
-								/*if (Joueur.indexTour == (Joueur.listeJoueur.size() - 1)) {
+								if (Joueur.indexTour == (Joueur.listeJoueur.size() - 1)) {
 									Joueur.indexTour = 0;
 									joueur = Joueur.listeJoueur.get(Joueur.indexTour);
 								} else {
 									Joueur.indexTour += 1;
 									joueur = Joueur.listeJoueur.get(Joueur.indexTour);
-								}*/
+								}
 							}
 						}
 					}
@@ -305,6 +359,14 @@ public class PlateauListener implements MouseInputListener {
 				if (tuileTmp.getHexagon() != null && tuileTmp.getHexagon().contains(e.getPoint())) {
 					Plateau.setIndexTuileEvidence(tuileTmp.getIndex());
 					Plateau.affichePlacementBateau(joueur);
+				}
+			}
+		}
+		if (phaseDePlacementBateau == false && AideJoueur.aideActive == false && joueur.phaseDeJeu == PhaseDuTour.DEPLACER) {
+			for (Tuile tuileTmp : Tuile.listeTuile) {
+				if (tuileTmp.getHexagon() != null && tuileTmp.getHexagon().contains(e.getPoint())) {
+					Plateau.setIndexTuileEvidence(tuileTmp.getIndex());
+					Plateau.affichePhaseDeplacement(joueur);
 				}
 			}
 		}

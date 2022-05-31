@@ -15,6 +15,7 @@ public class Bateau extends Piece{
 
 	public static List<Bateau> listeBateau = new ArrayList<Bateau>();
 	private List<Explorateur> passager = new ArrayList<Explorateur>();
+
 	public static int index;
 	private Image imageBateau;
 	
@@ -60,6 +61,14 @@ public class Bateau extends Piece{
     public void getNBExplorateur() {
         // TODO implement here
     }
+
+	public List<Explorateur> getPassager() {
+		return passager;
+	}
+
+	public void setPassager(List<Explorateur> passager) {
+		this.passager = passager;
+	}
 
     public void RecupererExplorateur(Explorateur explorateur) {
     	if(passager.size() < 3 ) {

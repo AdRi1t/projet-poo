@@ -46,6 +46,7 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.MouseInputListener;
 import javax.swing.text.AttributeSet.FontAttribute;
 
+import Controlleur.ExplorateurControlleur;
 import Controlleur.PlateauListener;
 import Controlleur.PlateauListener;
 import Model.Bateau;
@@ -80,8 +81,8 @@ public class Plateau extends JFrame{
 	
 	private static MouseInputListener mouseInputListener;
 	
-/** La tuile que l'on met en surbrillance. */
-	private static int indexTuileEvidence= -1 ;
+/** Les tuiles que l'on met en surbrillance. */
+	private static int indexTuileEvidence= -1 ;	
 
 	/** Taille de l'image. */
 	static int
@@ -282,6 +283,51 @@ public class Plateau extends JFrame{
 		main_frame.setVisible(true); 
 	}
 	
+	public static void affichePhaseDeplacement(Joueur joueur) {
+		JPanel fond = new DrawPlateau();
+		Fond = fond;
+		
+		JLabel joueurIcon = new JLabel(joueur.getIcon(),JLabel.CENTER);
+		JLabel joueurName = new JLabel(joueur.getNom(),JLabel.CENTER);
+		JLabel indication = new JLabel("<html>Déplacer &nbsp un<br>explorateur</html>",JLabel.CENTER);
+		
+		joueurIcon.setBounds(new Rectangle(22,130,joueur.getIcon().getIconWidth(),joueur.getIcon().getIconHeight()));
+		joueurName.setForeground(new Color(255,255,255));
+		joueurName.setFont(new Font("Impact",Font.TRUETYPE_FONT,26));
+		joueurName.setBounds(15,75,165,50);
+		joueurName.setVerticalAlignment(JLabel.NORTH);
+		indication.setBounds(15,350,167,120);
+		indication.setForeground(new Color(250,250,250));
+		indication.setFont(new Font("Impact",Font.TRUETYPE_FONT,24));
+		
+		JButton Aide = new JButton("AIDE");
+		Aide.setBounds(1040, 645, 120, 60);
+		Aide.setFont(new Font("Impact",Font.TRUETYPE_FONT,24));
+		Aide.setBorder(new LineBorder(new Color(220,25,120), 3));
+		Aide.addMouseListener(new PlateauListener(Aide,null));
+		JLabel aideIcon = new JLabel();
+		if(AideJoueur.aideActive==true) {
+			aideIcon = new JLabel(AideJoueur.getAideJoueurListe().get(AideJoueur.index));
+		}
+		aideIcon.setBounds(0,0,1200,720);	
+		
+		Fond.setLayout(null);
+		Fond.add(joueurIcon);
+		Fond.add(joueurName);
+		Fond.add(indication);
+		Fond.add(Aide);
+		Fond.add(aideIcon);
+		Fond.removeMouseListener(Plateau.mouseInputListener);
+		Fond.removeMouseMotionListener(Plateau.mouseInputListener);
+		Plateau.mouseInputListener = new PlateauListener(Aide,null);
+		Fond.addMouseMotionListener(Plateau.mouseInputListener);
+		Fond.addMouseListener(Plateau.mouseInputListener);
+		main_frame.add(Fond);
+		main_frame.setVisible(true);
+		
+	}
+
+	
 	public static void affichePlacementBateau(Joueur joueur) {
 		JPanel fond = new DrawPlateau();
 		Fond = fond;
@@ -424,11 +470,10 @@ public class Plateau extends JFrame{
 		System.exit(0);
 	}
 
-
 }
 
 /**
- * <strong>La classe qui va dessiner les hexagones</strong>
+ * <strong>La classe qui va dessiner les hexagones,le exploray=teur et les bateau</strong>
  * <p>
  * hérite de {@link JFrame}
  * </p>
@@ -578,6 +623,11 @@ class DrawPlateau extends JPanel{
 			Tuile specialTuile = Tuile.listeTuile.get(Plateau.getIndexTuileEvidence());
 			g2d.setColor(new Color(240, 20, 20, 120));
 			g2d.fillPolygon(specialTuile.getHexagon());
+		}
+		if(ExplorateurControlleur.getIndexTuileSelection1()>=0) {
+			Tuile TuileSelection = Tuile.listeTuile.get(ExplorateurControlleur.getIndexTuileSelection1());
+			g2d.setColor(new Color(20, 20, 240, 120));
+			g2d.fillPolygon(TuileSelection.getHexagon());
 		}
 		g2d.dispose();
 	}
