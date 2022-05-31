@@ -10,9 +10,9 @@ import Model.TypeTuile;
 
 public class ExplorateurControlleur {
 
-	private static int indexTuileSelection1 = -1 ;
-	private static int indexTuileSelection2 = -1 ;
-	
+	private static int indexTuileSelection1 = -1;
+	private static int indexTuileSelection2 = -1;
+
 	/**
 	 * Pour savoir si on a fini le placement des explorateur.
 	 *
@@ -57,6 +57,7 @@ public class ExplorateurControlleur {
 		List<Tuile> list = pion.getEmplacement().getVoisin();
 		int i = 0;
 		Boolean sontVoisin = false;
+
 		// verifier que la tuile actuelle et destination sont adjacentes
 		while (i < list.size() && !(sontVoisin)) {
 			if (list.get(i) == tuileDest) {
@@ -127,7 +128,7 @@ public class ExplorateurControlleur {
 		}
 		return false;
 	}
-	
+
 	public static int getIndexTuileSelection1() {
 		return indexTuileSelection1;
 	}

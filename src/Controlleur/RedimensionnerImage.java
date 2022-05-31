@@ -17,16 +17,9 @@ public class RedimensionnerImage {
         BufferedImage bufferedImage = ImageIO.read(new File(imagePathToRead));
         Image image = bufferedImage.getScaledInstance(1200, 720, Image.SCALE_DEFAULT);
 
-      ImageIcon icon = new ImageIcon(image);
-       // JFrame frame = new JFrame();
-       // frame.setLayout(new FlowLayout());
-        //frame.setSize(800, 600);
+        ImageIcon icon = new ImageIcon(image);
 
         JLabel jLabel = new JLabel();
-        //jLabel.setBounds(100, 100, 100, 100);
         jLabel.setIcon(icon);
-       // frame.add(jLabel);
-       // frame.setVisible(true);
-       // frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 }

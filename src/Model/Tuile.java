@@ -1,20 +1,8 @@
 package Model;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Polygon;
-import java.awt.Window.Type;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.*;
-
-import javax.imageio.ImageIO;
-import javax.management.modelmbean.ModelMBean;
-import javax.swing.ImageIcon;
-
-import Model.Piece;
 import Vue.Plateau;
 import Vue.TuileFond;
 
@@ -45,19 +33,22 @@ public class Tuile extends Piece {
 
 	/** Si on voit le terrain */
 	private boolean faceUp;
-	
+
 	/** l'index. */
 	private int index;
 
-	/** l'hexagon qui contient exactement oÃ¹ la tuile est placÃ©e de type {@link Polygon} */
+	/**
+	 * l'hexagon qui contient exactement oÃ¹ la tuile est placÃ©e de type
+	 * {@link Polygon}
+	 */
 	private Polygon hexagon = null;
 
 	/** L'image du terrain. {@link Image} */
 	private Image Terrain;
 
-	/**  L'image de l'effet. {@link Image} */
+	/** L'image de l'effet. {@link Image} */
 	private Image Effet;
-	
+
 	/** Bateau sur tuile */
 	private Bateau BateauSurTuile;
 
@@ -66,7 +57,7 @@ public class Tuile extends Piece {
 	 *
 	 * @param posX  Position X sur le tableau.
 	 * @param posY  Position Y sur le tableau.
-	 * @param index L'index de la tuile De 0 Ã  168.
+	 * @param index L'index de la tuile De 0 Ã 168.
 	 */
 	public Tuile(int posX, int posY, int index) {
 		this.PositionX = posX;
@@ -77,11 +68,11 @@ public class Tuile extends Piece {
 	public Bateau getBateauSurTuile() {
 		return BateauSurTuile;
 	}
-	
+
 	public boolean isBateauSurTuile() {
-		if(this.BateauSurTuile != null) {
+		if (this.BateauSurTuile != null) {
 			return true;
-		}else {
+		} else {
 			return false;
 		}
 	}
@@ -91,7 +82,8 @@ public class Tuile extends Piece {
 	}
 
 	/**
-	 * Permets d'initialiser la liste des tuiles du jeu {@link Model.Tuile#listeTuile}.
+	 * Permets d'initialiser la liste des tuiles du jeu
+	 * {@link Model.Tuile#listeTuile}.
 	 */
 	public static void initListTuiles() {
 		Tuile.initTabTuiles();
@@ -104,7 +96,7 @@ public class Tuile extends Piece {
 	}
 
 	/**
-	 * Donne un {@link TypeTuile} Ã  toutes les tuiles de la liste.
+	 * Donne un {@link TypeTuile} Ã toutes les tuiles de la liste.
 	 */
 	private static void initTypeTuiles() {
 		ArrayList<TypeTuile> randomTypeTuiles = TypeTuile.getRandomTuiles();
@@ -319,7 +311,8 @@ public class Tuile extends Piece {
 	}
 
 	/**
-	 * Permets de donner un effet {@link TuileEffet} Ã  chaque tuile de {@link Model.Tuile#listeTuile}.
+	 * Permets de donner un effet {@link TuileEffet} Ã chaque tuile de
+	 * {@link Model.Tuile#listeTuile}.
 	 */
 	private static void initEffetTuiles() {
 		ArrayList<TuileEffet> randomEffetPlage = TuileEffet.getPlageEffet();
@@ -344,7 +337,7 @@ public class Tuile extends Piece {
 
 	/**
 	 * Attribue aux tuiles non vides de la liste tuiles d'avoir un {@link Polygon}.
-	 * Les tuiles ont donc leur position sur le plateau. 
+	 * Les tuiles ont donc leur position sur le plateau.
 	 */
 	private static void setHexagone() {
 		int k = 0;
@@ -358,10 +351,11 @@ public class Tuile extends Piece {
 	}
 
 	/**
-	 * Fonction pour crÃ©er {@link Model.Tuile#tuliesTab} qui sert Ã  repÃ©rer les tuiles 
+	 * Fonction pour crÃ©er {@link Model.Tuile#tuliesTab} qui sert Ã repÃ©rer les
+	 * tuiles
 	 * et leur position sur le plateau.
 	 */
-	private static void initTabTuiles() { 
+	private static void initTabTuiles() {
 		int i = 0, j = 0;
 		int index = 0;
 		tuliesTab = new int[13][26];
@@ -496,7 +490,7 @@ public class Tuile extends Piece {
 	public Image getTerrain() {
 		return Terrain;
 	}
-	
+
 	/**
 	 * Permet d'obtenir l'emplacement de la tuiles.
 	 *
@@ -535,6 +529,7 @@ public class Tuile extends Piece {
 
 	/**
 	 * Retourne tous les voisin d'une tuiles.
+	 * 
 	 * @return la liste des voisins.
 	 */
 	public List<Tuile> getVoisin() {
@@ -543,6 +538,7 @@ public class Tuile extends Piece {
 
 	/**
 	 * Retirer tuile.
+	 * 
 	 * @param index l'index dans la liste globale
 	 */
 	public static void RetirerTuile(int index) {
@@ -556,6 +552,7 @@ public class Tuile extends Piece {
 
 	/**
 	 * Sets the terrain.
+	 * 
 	 * @param terrain the new terrain
 	 */
 	public void setTerrain(Image terrain) {
@@ -564,6 +561,7 @@ public class Tuile extends Piece {
 
 	/**
 	 * Checks if is face up.
+	 * 
 	 * @return true, if is face up
 	 */
 	public boolean isFaceUp() {
@@ -572,6 +570,7 @@ public class Tuile extends Piece {
 
 	/**
 	 * Sets the type tuile.
+	 * 
 	 * @param typeTuile the new type tuile
 	 */
 	public void setTypeTuile(TypeTuile typeTuile) {
@@ -580,6 +579,7 @@ public class Tuile extends Piece {
 
 	/**
 	 * Sets the face up.
+	 * 
 	 * @param faceUp the new face up
 	 */
 	public void setFaceUp(boolean faceUp) {
@@ -588,6 +588,7 @@ public class Tuile extends Piece {
 
 	/**
 	 * Gets the effet tuile.
+	 * 
 	 * @return the effet tuile
 	 */
 	public TuileEffet getEffetTuile() {
@@ -596,6 +597,7 @@ public class Tuile extends Piece {
 
 	/**
 	 * Sets the effet tuile.
+	 * 
 	 * @param effetTuile the new effet tuile
 	 */
 	public void setEffetTuile(TuileEffet effetTuile) {
@@ -604,6 +606,7 @@ public class Tuile extends Piece {
 
 	/**
 	 * Gets the effet.
+	 * 
 	 * @return the effet
 	 */
 	public Image getEffet() {
@@ -612,6 +615,7 @@ public class Tuile extends Piece {
 
 	/**
 	 * Sets the effet.
+	 * 
 	 * @param effet the new effet
 	 */
 	public void setEffet(Image effet) {

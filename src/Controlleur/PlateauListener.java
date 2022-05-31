@@ -1,25 +1,13 @@
 package Controlleur;
 
-import java.awt.Color;
-import java.awt.Polygon;
-import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
-
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.event.MouseInputListener;
 
-import Model.Bateau;
-import Model.Explorateur;
-import Model.Joueur;
-import Model.LancerDe;
-import Model.PhaseDuTour;
-import Model.Tuile;
-import Model.TuileEffet;
-import Model.TypeTuile;
+import Model.*;
+
 import Vue.AideJoueur;
 import Vue.Plateau;
 
@@ -50,7 +38,7 @@ public class PlateauListener implements MouseInputListener {
 	 * 
 	 * @param source une {@link JFrame}
 	 */
-	public PlateauListener(JButton sourceAide,JButton sourceLancerDe) {
+	public PlateauListener(JButton sourceAide, JButton sourceLancerDe) {
 		super();
 		if (ExplorateurControlleur.phasePlacementExploTerminer()) {
 			PlateauListener.phaseDePlacementExplorateur = false;
@@ -74,12 +62,16 @@ public class PlateauListener implements MouseInputListener {
 	 */
 	@Override
 	public void mouseClicked(MouseEvent e) {
+
+		/*
+		 * Active l'aide au Joueur
+		 */
 		if (e.getSource() == sourceAide) {
 			if (AideJoueur.aideActive == false) {
 				AideJoueur.aideActive = true;
 				AideJoueur.init_aide();
 				AideJoueur.index += 1;
-			}else{
+			} else {
 				if (AideJoueur.index < 8) {
 					AideJoueur.index += 1;
 				} else {
@@ -88,9 +80,9 @@ public class PlateauListener implements MouseInputListener {
 				}
 			}
 			try {
-				if(phaseDePlacementExplorateur == true) {
+				if (phaseDePlacementExplorateur == true) {
 					Plateau.affichePlacementExplorateur(joueur);
-				}else {
+				} else {
 					Plateau.affichePhaseRetournement();
 				}
 			} catch (IOException e1) {
@@ -98,7 +90,6 @@ public class PlateauListener implements MouseInputListener {
 			}
 		}
 		if (phaseDePlacementExplorateur == true && AideJoueur.aideActive == false) {
-			int index = joueur.listeJoueur.indexOf(joueur);
 			for (Tuile tuileTmp : Tuile.listeTuile) {
 				if (tuileTmp.getTypeTuile() != TypeTuile.VIDE || tuileTmp.getTypeTuile() != TypeTuile.MER
 						|| tuileTmp.getTypeTuile() != TypeTuile.ARRIVEE) {
@@ -123,11 +114,10 @@ public class PlateauListener implements MouseInputListener {
 			}
 		}
 		if (phaseDePlacementExplorateur == false && AideJoueur.aideActive == false && phaseDePlacementBateau == true) {
-			int index = joueur.listeJoueur.indexOf(joueur);
 			for (Tuile tuileTmp : Tuile.listeTuile) {
 				if (tuileTmp.getTypeTuile() == TypeTuile.MER) {
 					if (tuileTmp.getHexagon() != null && tuileTmp.getHexagon().contains(e.getPoint())) {
-						if(joueur.placerBateau(tuileTmp, Bateau.listeBateau.get(Bateau.index))){
+						if (joueur.placerBateau(tuileTmp, Bateau.listeBateau.get(Bateau.index))) {
 							tuileTmp.setBateauSurTuile(Bateau.listeBateau.get(Bateau.index));
 							if (Joueur.indexTour == (Joueur.listeJoueur.size() - 1)) {
 								Joueur.indexTour = 0;
@@ -136,15 +126,16 @@ public class PlateauListener implements MouseInputListener {
 								Joueur.indexTour += 1;
 								joueur = Joueur.listeJoueur.get(Joueur.indexTour);
 							}
-							Bateau.index+=1;
+							Bateau.index += 1;
 							Plateau.affichePlacementBateau(joueur);
 						}
 					}
 				}
 			}
 		}
-		
-		if (phaseDePlacementBateau == false && AideJoueur.aideActive == false && joueur.phaseDeJeu == PhaseDuTour.DEPLACER) {
+
+		if (phaseDePlacementBateau == false && AideJoueur.aideActive == false
+				&& joueur.phaseDeJeu == PhaseDuTour.DEPLACER) {
 			Tuile tuile = null;
 			Explorateur explorateur = null;
 			boolean voisin = false;
@@ -153,59 +144,69 @@ public class PlateauListener implements MouseInputListener {
 					tuile = tuileTmp;
 				}
 			}
-			if (tuile != null && tuile.getTypeTuile() != TypeTuile.VIDE ) {
-				if(ExplorateurControlleur.getIndexTuileSelection1() == -1 && ExplorateurControlleur.getIndexTuileSelection2() == -1) {
+			if (tuile != null && tuile.getTypeTuile() != TypeTuile.VIDE) {
+				if (ExplorateurControlleur.getIndexTuileSelection1() == -1
+						&& ExplorateurControlleur.getIndexTuileSelection2() == -1) {
 					ExplorateurControlleur.setIndexTuileSelection1(tuile.getIndex());
 					Plateau.affichePhaseDeplacement(joueur);
 				}
 				for (Explorateur explorateurTmp : joueur.getMainJoueur().pionExplorateur) {
-					if(explorateurTmp.getEmplacement() == Tuile.listeTuile.get(ExplorateurControlleur.getIndexTuileSelection1()) && Joueur.listeJoueur.get(Joueur.indexTour)==joueur) {
-							explorateur=explorateurTmp;
+					if (explorateurTmp.getEmplacement() == Tuile.listeTuile
+							.get(ExplorateurControlleur.getIndexTuileSelection1())
+							&& Joueur.listeJoueur.get(Joueur.indexTour) == joueur) {
+						explorateur = explorateurTmp;
 					}
 				}
-				if(explorateur == null) {
+				if (explorateur == null) {
 					ExplorateurControlleur.setIndexTuileSelection1(-1);
 					Plateau.affichePhaseDeplacement(joueur);
 				}
-				if(ExplorateurControlleur.getIndexTuileSelection1() != -1 && ExplorateurControlleur.getIndexTuileSelection2() == -1) {
+				if (ExplorateurControlleur.getIndexTuileSelection1() != -1
+						&& ExplorateurControlleur.getIndexTuileSelection2() == -1) {
 					ExplorateurControlleur.setIndexTuileSelection2(tuile.getIndex());
 				}
-				if(ExplorateurControlleur.getIndexTuileSelection1()!= -1 && ExplorateurControlleur.getIndexTuileSelection2() !=-1  && tuile != null ) {
-					for(Tuile tuilTmp :Tuile.listeTuile.get(ExplorateurControlleur.getIndexTuileSelection1()).getVoisin()) {
-						if(tuilTmp == Tuile.listeTuile.get(ExplorateurControlleur.getIndexTuileSelection2())) {
+				if (ExplorateurControlleur.getIndexTuileSelection1() != -1
+						&& ExplorateurControlleur.getIndexTuileSelection2() != -1 && tuile != null) {
+					for (Tuile tuilTmp : Tuile.listeTuile.get(ExplorateurControlleur.getIndexTuileSelection1())
+							.getVoisin()) {
+						if (tuilTmp == Tuile.listeTuile.get(ExplorateurControlleur.getIndexTuileSelection2())) {
 							voisin = true;
 						}
 					}
 				}
-				if(ExplorateurControlleur.getIndexTuileSelection1() != -1 && ExplorateurControlleur.getIndexTuileSelection2() !=-1 && voisin == false) {
+				if (ExplorateurControlleur.getIndexTuileSelection1() != -1
+						&& ExplorateurControlleur.getIndexTuileSelection2() != -1 && voisin == false) {
 					ExplorateurControlleur.setIndexTuileSelection2(-1);
 					ExplorateurControlleur.setIndexTuileSelection2(-1);
 					Plateau.affichePhaseDeplacement(joueur);
-				}else if(ExplorateurControlleur.getIndexTuileSelection1() != -1 && ExplorateurControlleur.getIndexTuileSelection2() !=-1 && voisin == true) {
-					if(ExplorateurControlleur.deplacerPion(explorateur, tuile)) {
+				} else if (ExplorateurControlleur.getIndexTuileSelection1() != -1
+						&& ExplorateurControlleur.getIndexTuileSelection2() != -1 && voisin == true) {
+					if (ExplorateurControlleur.deplacerPion(explorateur, tuile)) {
 						ExplorateurControlleur.setIndexTuileSelection1(-1);
 						ExplorateurControlleur.setIndexTuileSelection2(-1);
-						if(joueur.getDeplacementFait() < 2) {
-							joueur.setDeplacementFait(joueur.getDeplacementFait()+1);
+						if (joueur.getDeplacementFait() < 2) {
+							joueur.setDeplacementFait(joueur.getDeplacementFait() + 1);
 							Plateau.affichePhaseDeplacement(joueur);
-						}else {
+						} else {
 							joueur.setDeplacementFait(0);
 							joueur.phaseDeJeu = PhaseDuTour.RETOURNER;
 						}
 					}
 				}
 			}
-			System.out.println(ExplorateurControlleur.getIndexTuileSelection1() +"  " + ExplorateurControlleur.getIndexTuileSelection2());
+			System.out.println(ExplorateurControlleur.getIndexTuileSelection1() + "  "
+					+ ExplorateurControlleur.getIndexTuileSelection2());
 		}
-		if (phaseDePlacementBateau == false && AideJoueur.aideActive == false && joueur.phaseDeJeu == PhaseDuTour.RETOURNER) {
+		if (phaseDePlacementBateau == false && AideJoueur.aideActive == false
+				&& joueur.phaseDeJeu == PhaseDuTour.RETOURNER) {
 			for (Tuile tuileTmp : Tuile.listeTuile) {
 				if (tuileTmp.getTypeTuile() != TypeTuile.VIDE || tuileTmp.getTypeTuile() != TypeTuile.MER
 						|| tuileTmp.getTypeTuile() != TypeTuile.ARRIVEE) {
 					if (tuileTmp.getHexagon() != null && tuileTmp.getHexagon().contains(e.getPoint())) {
 						if (TuileControlleur.estRetournable(tuileTmp)) {
-							if(tuileTmp.getEffetTuile() == TuileEffet.VOLCAN){
+							if (tuileTmp.getEffetTuile() == TuileEffet.VOLCAN) {
 								Plateau.afficheFinDePartie();
-							}else if (tuileTmp.isFaceUp() == true && tuileSelection == false) {
+							} else if (tuileTmp.isFaceUp() == true && tuileSelection == false) {
 								tuileTmp.setFaceUp(false);
 								tuileSelection = true;
 								try {
@@ -239,7 +240,7 @@ public class PlateauListener implements MouseInputListener {
 				}
 			}
 		}
-		if (e.getSource()==sourceLancerDe) {
+		if (e.getSource() == sourceLancerDe) {
 			try {
 				LancerDe lance;
 				System.out.println("scd");
@@ -333,7 +334,7 @@ public class PlateauListener implements MouseInputListener {
 				e1.printStackTrace();
 			}
 		}
-		
+
 		if (phaseDePlacementExplorateur == true && AideJoueur.aideActive == false) {
 			for (Tuile tuileTmp : Tuile.listeTuile) {
 				if (tuileTmp.getHexagon() != null && tuileTmp.getHexagon().contains(e.getPoint())) {
@@ -362,7 +363,8 @@ public class PlateauListener implements MouseInputListener {
 				}
 			}
 		}
-		if (phaseDePlacementBateau == false && AideJoueur.aideActive == false && joueur.phaseDeJeu == PhaseDuTour.DEPLACER) {
+		if (phaseDePlacementBateau == false && AideJoueur.aideActive == false
+				&& joueur.phaseDeJeu == PhaseDuTour.DEPLACER) {
 			for (Tuile tuileTmp : Tuile.listeTuile) {
 				if (tuileTmp.getHexagon() != null && tuileTmp.getHexagon().contains(e.getPoint())) {
 					Plateau.setIndexTuileEvidence(tuileTmp.getIndex());
@@ -370,13 +372,14 @@ public class PlateauListener implements MouseInputListener {
 				}
 			}
 		}
-		if (phaseDePlacementBateau == false && AideJoueur.aideActive == false && joueur.phaseDeJeu == PhaseDuTour.RETOURNER) {
+		if (phaseDePlacementBateau == false && AideJoueur.aideActive == false
+				&& joueur.phaseDeJeu == PhaseDuTour.RETOURNER) {
 			for (Tuile tuileTmp : Tuile.listeTuile) {
 				if (tuileTmp.getHexagon() != null && tuileTmp.getHexagon().contains(e.getPoint())) {
 					Plateau.setIndexTuileEvidence(tuileTmp.getIndex());
 					try {
 						Plateau.affichePhaseRetournement();
-						if(tuileSelection==true) {
+						if (tuileSelection == true) {
 							Plateau.afficherTuileInfo();
 						}
 					} catch (IOException e1) {
@@ -385,7 +388,8 @@ public class PlateauListener implements MouseInputListener {
 				}
 			}
 		}
-		if (phaseDePlacementBateau == false && AideJoueur.aideActive == false && joueur.phaseDeJeu == PhaseDuTour.LANCER_DE) {
+		if (phaseDePlacementBateau == false && AideJoueur.aideActive == false
+				&& joueur.phaseDeJeu == PhaseDuTour.LANCER_DE) {
 			for (Tuile tuileTmp : Tuile.listeTuile) {
 				if (tuileTmp.getHexagon() != null && tuileTmp.getHexagon().contains(e.getPoint())) {
 					Plateau.setIndexTuileEvidence(tuileTmp.getIndex());

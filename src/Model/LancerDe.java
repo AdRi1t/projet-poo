@@ -1,21 +1,21 @@
 package Model;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Random;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 public class LancerDe extends JFrame {
     private JPanel contentPane;
 
-
     private ImageIcon[] image = new ImageIcon[8];
     JLabel ImageLabel;
+
     /**
      * Create the frame.
+     * 
      * @throws IOException
      */
     public LancerDe() throws IOException {
@@ -34,7 +34,7 @@ public class LancerDe extends JFrame {
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPane.setLayout(new BorderLayout(0, 0));
-        contentPane.setBackground( Color.WHITE );
+        contentPane.setBackground(Color.WHITE);
         setContentPane(contentPane);
 
         Panel panel = new Panel();
@@ -53,8 +53,8 @@ public class LancerDe extends JFrame {
                 Thread th = new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        for (int y = 0; y<3; y++){
-                            for(int j=3; j<8;j++) {
+                        for (int y = 0; y < 3; y++) {
+                            for (int j = 3; j < 8; j++) {
 
                                 try {
                                     Thread.sleep(200);
@@ -71,7 +71,7 @@ public class LancerDe extends JFrame {
                             e.printStackTrace();
                         }
                         int i = random();
-                        System.out.println("La valeur du de est "+String.valueOf(i));
+                        System.out.println("La valeur du de est " + String.valueOf(i));
                         ImageLabel.setIcon(image[i]);
                     }
                 });
@@ -83,10 +83,7 @@ public class LancerDe extends JFrame {
     }
 
     public static int random() {
-        int i = (int)Math.floor(Math.random()*(3));
-        return  i;
+        int i = (int) Math.floor(Math.random() * (3));
+        return i;
     }
 }
-
-
-
