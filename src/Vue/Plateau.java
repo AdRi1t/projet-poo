@@ -526,7 +526,7 @@ public class Plateau extends JFrame{
 }
 
 /**
- * <strong>La classe qui va dessiner les hexagones,le exploray=teur et les bateau</strong>
+ * <strong>La classe qui va dessiner les hexagones,le explorateur et les bateau</strong>
  * <p>
  * hérite de {@link JFrame}
  * </p>
