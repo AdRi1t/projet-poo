@@ -43,6 +43,8 @@ public class Joueur {
     /** L'image de profil du joueur. */
     private ImageIcon icon;
     
+    private int deplacementFait;
+    
     /** La couleur de ces pions. */
     private CouleurExplorateur couleur;
     
@@ -57,6 +59,7 @@ public class Joueur {
         super();
         this.setNom(nom);
         this.phaseDeJeu = PhaseDuTour.DEPLACER;
+        this.setDeplacementFait(0);
         mainJoueur = new MainJoueur();
     }
 	
@@ -220,6 +223,14 @@ public class Joueur {
 	 */
 	public void setCouleur(CouleurExplorateur couleur) {
 		this.couleur = couleur;
+	}
+
+	public int getDeplacementFait() {
+		return deplacementFait;
+	}
+
+	public void setDeplacementFait(int deplacementFait) {
+		this.deplacementFait = deplacementFait;
 	}
 
 }

@@ -153,7 +153,6 @@ public class PlateauListener implements MouseInputListener {
 					tuile = tuileTmp;
 				}
 			}
-			System.out.println("ex :" +explorateur+ "   tuile :"+ tuile);
 			if (tuile.getTypeTuile() != TypeTuile.VIDE ) {
 				if(ExplorateurControlleur.getIndexTuileSelection1() == -1 && ExplorateurControlleur.getIndexTuileSelection2() == -1) {
 					ExplorateurControlleur.setIndexTuileSelection1(tuile.getIndex());
@@ -186,11 +185,12 @@ public class PlateauListener implements MouseInputListener {
 					if(ExplorateurControlleur.deplacerPion(explorateur, tuile)) {
 						ExplorateurControlleur.setIndexTuileSelection1(-1);
 						ExplorateurControlleur.setIndexTuileSelection2(-1);
-						joueur.phaseDeJeu = PhaseDuTour.RETOURNER;
-						try {
-							Plateau.affichePhaseRetournement();
-						} catch (IOException e1) {
-							e1.printStackTrace();
+						if(joueur.getDeplacementFait() < 2) {
+							joueur.setDeplacementFait(joueur.getDeplacementFait()+1);
+							Plateau.affichePhaseDeplacement(joueur);
+						}else {
+							joueur.setDeplacementFait(0);
+							joueur.phaseDeJeu = PhaseDuTour.RETOURNER;
 						}
 					}
 				}
